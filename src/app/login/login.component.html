@@ -1,0 +1,153 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>-->
+    <link rel="stylesheet" href="login.component.css" >
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+<!--
+</head> -->
+<!-- <body> -->
+    <!--
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+<!--
+  This example requires updating your template:
+
+  ```
+  <html class="h-full bg-gray-50">
+  <body class="h-full">
+  ```
+-->
+<header class="absolute inset-x-0 top-0 z-50">
+  <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <div class="flex lg:flex-1">
+      <button type="button" class="relative inline-flex items-center  bg-gray-100  transition duration-150 rounded-md px-2 py-2 text-[#004aad] ring-inset ring-white  focus:z-10" onclick="history.go(-1)">
+        <span class="sr-only">Previous</span>
+        <svg class="h-10 w-10  border-[#004aad] border-hidden border-2 rounded-md hover:border-solid hover:text-[#3558E6] transition duration-500 " viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
+      <!-- <div class="flex lg:hidden">
+        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+          <span class="sr-only">Open main menu</span>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div> -->
+      
+      
+    </nav>
+
+</header>
+<div class="flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8 container-div">
+    <div class="w-full max-w-md space-y-8">
+      <div>
+        <h2 class="text-center mt-6 text-4xl text-black font-semibold  ">{{ comenzar }}</h2>
+        <!--<p class="mt-2 text-center text-sm text-gray-600">
+          No tienes una cuenta?<br>
+          <a href="./registro.html" class="font-medium text-[#004aad] hover:text-indigo-500">Registrate!</a>
+        </p>-->
+      </div>
+      <form class="mt-8 space-y-6" action="#" method="POST">
+        <input type="hidden" name="remember" value="true">
+        <div class="-space-y-px rounded-md shadow-sm">
+          <div class="relative mt-2 rounded-md shadow-md">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg class="h-5 w-5 text-[#004aad]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+                <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+            </svg>
+            </div>
+            <input type="email" name="email" id="email" class="block w-full rounded-md border-0 py-1.5 pl-10  text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{correo_electronico}}" required>
+          </div>  
+          <div>
+            <label for="password" class="sr-only">Password</label>
+            <div class="relative mt-2 rounded-md shadow-md flex row">
+                        
+              <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <svg class="h-5 w-5 text-[#004aad] group-hover:text-indigo-400 mr-16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
+                  </svg>
+                  
+              </div>
+              
+              <input type="password" name="password" id="password" class="block w-full rounded-md  py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{ contrasenia }}" required>
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="mirar();" class="flex self-center p-2 cursor-pointer" width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5s5 2.24 5 5s-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3s3-1.34 3-3s-1.34-3-3-3z"/></svg>
+            </div>
+          </div>
+        </div>
+  
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+            <label for="remember-me" class="ml-2 block text-sm text-gray-900">{{recordar_contrasenia}}</label>
+          </div>
+  
+          <div class="text-sm">
+            <a href="#" class="font-medium text-[#004aad] hover:text-indigo-500">{{ olvidaste_contrasenia }}</a>
+          </div>
+        </div>
+  
+        <div>
+          <a href="" class=" group relative flex w-full text-[#fff] justify-center rounded-md  bg-[#004aad] transition duration-150 px-3 py-2 text-xl font-semibold  hover:bg-[#2A61AB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            
+            {{ iniciar_sesion }}
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="rounded-md bg-green-50 p-4" hidden="true">
+    <div class="flex">
+      <div class="flex-shrink-0">
+        <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div class="ml-3">
+        <p class="text-sm font-medium text-green-800">Has iniciado sesion</p>
+      </div>
+      <div class="ml-auto pl-3">
+        <div class="-mx-1.5 -my-1.5">
+          <button type="button" class="inline-flex rounded-md bg-green-50 p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-green-50">
+            <span class="sr-only">Dismiss</span>
+            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+<!-- </body>
+ --><!-- </html> -->

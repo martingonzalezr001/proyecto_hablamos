@@ -1,0 +1,65 @@
+<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <!--
+      Background backdrop, show/hide based on modal state.
+  
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+    <div class="fixed inset-0 bg-[#6B7280] bg-opacity-50 transition-opacity"></div>
+  
+    <div class="fixed inset-0 z-10 overflow-y-auto bg-[#ffffff] bg-opacity-75">
+      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 bg-opacity-100">
+        <!--
+          Modal panel, show/hide based on modal state.
+  
+          Entering: "ease-out duration-300"
+            From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            To: "opacity-100 translate-y-0 sm:scale-100"
+          Leaving: "ease-in duration-200"
+            From: "opacity-100 translate-y-0 sm:scale-100"
+            To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        -->
+        <div class="relative transform overflow-hidden rounded-lg bg-[#ffffff] px-4 pb-4  text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-5 opacity-100">
+            <a (click)="cerrarModal()" class="top-2 absolute cursor-pointer right-0 text-gray-300 pr-2 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41z"/></svg>
+            </a>
+          <div>
+            <div class="mx-auto flex h-12 w-12  items-center justify-center rounded-full bg-green-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 64 64"><path fill="#fbbf67" d="M64 32c0 17.677-14.323 32-32 32C14.33 64 .005 49.673.005 32C.005 14.325 14.328 0 32 0c17.678 0 32 14.327 32 32"/><path fill="#633d19" d="M44.564 39.39h-1.873c-.1 0-.162.035-.25.049c-.099.014-.189.018-.285.058c-.158.06-.289.154-.407.264c-.024.021-.052.025-.075.051c-4.522 4.408-10.447 5.414-16.09 2.511c-3.03-1.558-2.78-2.932-6.02-2.932c-1.327 0-1.822 1.538-1.018 2.459c7.315 8.443 19.726 8.443 27.05 0c.796-.922.305-2.46-1.022-2.46"/><path fill="#ed307c" d="M19.361 34.09c0 3.58-3.56 6.48-7.952 6.48c-4.388 0-7.944-2.9-7.944-6.48c0-3.581 3.556-6.481 7.944-6.481c4.392 0 7.952 2.9 7.952 6.481m41.179 0c0 3.58-3.557 6.48-7.948 6.48c-4.388 0-7.944-2.9-7.944-6.48c0-3.581 3.557-6.481 7.944-6.481c4.391 0 7.948 2.9 7.948 6.481" opacity=".48"/><path fill="#633d19" d="M29.12 25.01c-1.386-3.786-4.531-7.41-8.875-7.327c-4.051.079-6.491 4.364-7.812 7.607c-.826 2.028 2.455 2.899 3.269.903c.848-2.083 2.099-4.384 4.388-5.081c2.625-.804 5.03 2.8 5.758 4.8c.747 2.034 4.02 1.155 3.272-.902m5.89-.04c1.384-3.784 4.53-7.408 8.872-7.325c4.052.077 6.493 4.362 7.813 7.607c.824 2.026-2.455 2.897-3.271.901c-.846-2.085-2.097-4.382-4.388-5.083c-2.624-.802-5.03 2.802-5.759 4.802c-.743 2.034-4.02 1.155-3.267-.902"/>
+                </svg>
+            </div>
+            <div class="mt-3 text-center sm:mt-5">
+              <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Muchas gracias por tu ayuda!</h3>
+              <div class="mt-2">
+                <p class="text-sm text-gray-500">Para que ayudes a las personas que lo necesitan, necesitas dejarnos tu <span class="text-md font-semibold text-[#000000]">número de teléfono.</span></p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5 sm:mt-6">
+            <div >
+                <form class="flex flex-col" [formGroup]="guardar_tlf" (ngSubmit)="guardarUsuario()" >
+                    <div class="relative mt-2 rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 flex items-center">
+                            <label for="country" class="sr-only">Country</label>
+                            <select id="country" name="country" autocomplete="country" class="h-full rounded-md border-0 bg-transparent py-0 pl-3 pr-7 ring-1 ring-inset ring-gray-300 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
+                            <option>US</option>
+                            <option>CA</option>
+                            <option>EU</option>
+                            </select>
+                        </div>
+                        <input type="text" name="phone-number" #tlf formControlName="tlf" id="phone-number" class="block w-full rounded-md border-0 py-1.5 pl-16 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="    &nbsp;EJ:+1 (555) 987-6543">
+                    </div>
+                    <div class="flex justify-center my-3">
+                        <button class="flex p-3 bg-[#004aad] rounded-md text-[#ffffff] my-3 " type="submit">Aceptar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>

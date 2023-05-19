@@ -20,6 +20,12 @@ import { ConectarComponent } from './conectar/conectar.component';
 import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
 import { RecuperarPasswordComponent } from './recuperar-password/recuperar-password.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NotificationSuccessComponent } from './extra-components/notification-success/notification-success.component';
+import { LoginServiceService } from './services/login-service.service';
+import { NotificationErrorComponent } from './extra-components/notification-error/notification-error.component';
+import { ModalTlfComponent } from './extra-components/modal-tlf/modal-tlf.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,6 +34,7 @@ const routes: Routes = [
   { path: 'perfil', component: PerfilComponent},
   { path: 'conectar', component: ConectarComponent},
   { path: 'lista-usuarios', component: ListaUsuariosComponent},
+  { path: 'recuperar-password', component: RecuperarPasswordComponent},
   { path: '**', component: HomeComponent },
 ];
 
@@ -40,8 +47,10 @@ const routes: Routes = [
     PerfilComponent,
     ConectarComponent,
     ListaUsuariosComponent,
-    RecuperarPasswordComponent
-  ],
+    RecuperarPasswordComponent,
+    NotificationSuccessComponent,
+    NotificationErrorComponent,
+    ModalTlfComponent,  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -51,10 +60,12 @@ const routes: Routes = [
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule,
+
 
   ],
-  providers: [],
+  providers: [LoginServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

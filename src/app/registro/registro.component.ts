@@ -1,5 +1,8 @@
 import { Component, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { LoginServiceService } from '../services/login-service.service';
+import { UserServiceService } from '../services/user-service.service';
+import { Usuario } from '../usuarios';
 
 @Component({
   selector: 'app-registro',
@@ -8,44 +11,208 @@ import { FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators } from '
 })
 export class RegistroComponent {
 
+  registro_titulo = '¡Registrate!';
+  ya_tienes_cuenta = '¿Ya tienes una cuenta?';
+  iniciar_sesion = 'Iniciar sesión';
+  nombre_ph = 'Nombre';
+  apellidos_ph = 'Apellidos';
+  email_ph = 'Correo electrónico';
+  confirmar_password_ph = 'Confirmar contraseña';
+  horario_ph = 'Horario de disponibilidad';
+  estado_ph = 'Estado actual';
+  contacto_ph = 'Forma de contactar';
+  descripcion_ph = 'Añade una descripción...';
+  foto_perfil = 'Foto de perfil';
 
-contactar = document.getElementById("forma_contactar") as HTMLSelectElement;
-  registrar_usuario!: FormGroup;
-valor = this.contactar?.value ;
+  preguntar_tlf = '¿Te gustaría formar parte de nuestra comunidad ayudando a gente que necesita conversación o acompañamiento?';
+  comenzar_btn = 'Comenzar';
+  
+  
+  
+  
+  ngOnInit(): void {
+    
+    this.succes_login = this.loginService.isValidEmail;
+    setInterval(() => {
+      this.succes_login = false
+    },2000);
+    console.log(this.loginService.email);
+    console.log(this.loginService.password);
+    console.log(this.loginService.uid);
+    this.email = this.loginService.email;
+    this.sobreescribirEmail();
 
-contactarDefault:string = "Teléfono";
-formasContactar:string[]  = ["Teléfono","Correo electronico"];
+
+  
+
+  }
+
+
+
+  registrar_usuario: FormGroup;
+  succes_login:boolean;
+
+  //Variables de input
+  email:string;
+  //falta passord para compararlo con la que lo confirma
+
+  sobreescribirEmail(){
+    const inputEmail = document.querySelector('#email');
+    inputEmail?.setAttribute("value", this.loginService.email);
+    inputEmail?.setAttribute("disabled", "true");
+  }
+  mirarPassword(){
+    var passwd = document.getElementById("password");
+     if(passwd?.getAttribute("type") == "password"){
+      passwd.setAttribute("type", "text");
+      }else{
+        passwd?.setAttribute("type", "password");
+      }
+  }
+
+
+
+  //Variables de select
+  estado:string;
+  forma_contactar:string;
+
+  //Ceckbox tlf
+  telefono_check:boolean = false;
+  tlfModal:boolean = false;
+
+  tlfModalAccepted:boolean = false;
+
+  cambiar(){
+    if(this.telefono_check){
+      this.telefono_check = false;
+    }else{
+      this.telefono_check = true;
+    }
+    
+  }
+
+  //Modal tlf
+  cerrarModal(evento:boolean){
+    if(evento){
+      this.tlfModal = false;
+    }
+
+  }
+//Usuario
+usuario:any;
+  //telefono
+  tlf:string;
+
+ /*  agregarTlf(value:string){//Esta funcion guarda el numero de telefono pedido en el modal en la variable tlf
+    console.log(value);
+    this.tlf = value;
+    this.tlfModalAccepted = true;
+    if(this.tlfModalAccepted){
+      this.tlfModal = false;
+      this.registrar()
+    }
+    
+    console.log("Heeey: " + this.tlf);
+   // this.cerrarModal(true);
+   // this.registrar();
+  } */
+
+  //Boton comenzar
+  comenzar(){
+
+    this.usuario = {
+      uid : this.loginService.uid,
+      nombre : this.registrar_usuario.value.nombre,
+      apellido : this.registrar_usuario.value.apellidos,
+      correo : this.loginService.email,
+   
+      estado : this.estado,
+      horario_disponibilidad : this.registrar_usuario.value.horario_disponibilidad,
+      forma_contactar : this.forma_contactar,
+      descripcion : this.registrar_usuario.value.descripcion,
+      telefono : ''
+
+
+     
+    };
+
+    if(this.tlf != null){
+      this.usuario.telefono = this.tlf;
+    }
+   
+
+    if(this.telefono_check){
+      this.tlfModal = true;
+    }else{
+      this.newUser.guardarUsuario(this.usuario).then(() =>{
+        console.log(this.usuario);
+        console.log("Usuario guardado");
+      }).catch(error =>{
+        switch(error.code){
+          case 'Unsupported field value: undefined':
+            
+        }
+      }); 
+    }
+  }
+
+
+
+
+
 position:number=0;
 
-changeValue(ngForm:NgForm | FormGroupDirective){
-  this.valor = ngForm.value;
-  console.log(this.valor);
+estados = [
+  {id:1, name:"Disponible"},
+  {id:2, name:"No disponible"},
+  {id:3, name:"Ocupado"},
+]
+
+gadgets = [
+  {id:4, name:"Teléfono"},
+  {id:5, name:"Correo electronico"}
+]
+
+itemSelected(item:any){
+  console.log(item);
+  if(item.id < 3){
+    this.estado = item.name;
+  }else{
+    this.forma_contactar = item.name;
+  }
 }
 
+
  
  
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private loginService:LoginServiceService , private newUser:UserServiceService) {
     this.registrar_usuario = this.fb.group({
       nombre: ['',Validators.required],
-      apellido: ['',Validators.required],
-      correo: ['',Validators.required],
-      contrasenia: ['',Validators.required],
+      apellidos: ['',Validators.required],
+      correo: [loginService.email,Validators.required],
       confirmar_contrasenia: ['',Validators.required],
       estado: ['',Validators.required],
+      horario_disponibilidad: ['',Validators.required],
       forma_contactar: ['',Validators.required],
       descripcion: ['',Validators.required],
+      telefono: ['']
     });
+
+    this.loginService.isValidEmail;
+    this.email = this.loginService.email;
+    
    }
 
 
-   registrar(){
-    const nombre = this.registrar_usuario.value.nombre;
-    const apellido = this.registrar_usuario.value.apellido;
-    const correo = this.registrar_usuario.value.correo;
-    const contrasenia = this.registrar_usuario.value.contrasenia;
-    const confirmar_contrasenia = this.registrar_usuario.value.confirmar_contrasenia;
-    const estado = this.registrar_usuario.value.estado;
-    const forma_contactar = this.registrar_usuario.value.forma_contactar;
-    const descripcion = this.registrar_usuario.value.descripcion;
-   }
+   //Control de errores.
+   error_required:boolean = false;
+   identificarError(){
+    if(this.registrar_usuario.get('nombre')?.hasError('required') && this.registrar_usuario.get('nombre')?.touched){
+      console.log("Nombre requerido");
+      this.error_required = true;
+    }
+  }
+
+
+  
 }

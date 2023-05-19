@@ -53,33 +53,25 @@
           </svg>
         </button>
       </div>
-        <div class="flex lg:hidden">
-          <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-            <span class="sr-only">Open main menu</span>
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-          </button>
-        </div>
-        
+     
         
       </nav>
 
 </header>
-<div class="relative flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8 container-div">
+<div class="flex relative  min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8 container-div">
     
-    <div class="w-full max-w-md space-y-8">
+    <div class="w-full max-w-md space-y-8 relative">
       <div>
-        <h2 class="mt-6 text-center text-4xl font-bold tracking-tight text-gray-900">Registrate!</h2>
+        <h2 class="mt-6 text-center text-4xl font-bold tracking-tight text-gray-900">{{ registro_titulo }}</h2>
         <p class="mt-2 text-center text-sm text-gray-600">
-          Ya tienes una cuenta?<br>
-          <a href="login.html" class="font-medium text-[#004aad] hover:text-indigo-500">Iniciar sesion!</a>
+          {{ya_tienes_cuenta}}<br>
+          <a href="login.html" class="font-medium text-[#004aad] hover:text-indigo-500">{{iniciar_sesion}}</a>
         </p>
       </div>
-      <form class="mt-8 space-y-6" action="#" method="POST" [formGroup]="registrar_usuario" #registerForm = "ngForm">
+      <form class="mt-8 space-y-6" action="#" method="POST" (ngSubmit)="comenzar()" [formGroup]="registrar_usuario" #registerForm = "ngForm">
         <div class="-space-y-px rounded-md shadow-sm">
-            <div class="inputs">
-                <div class="mt-2 flex rounded-md shadow-md">
+            <div class="inputs relative">
+                <div class="mt-2 flex rounded-md shadow-md relative ">
                     <label for="nombre" class="sr-only">Nombre</label>
 
                     <div class="relative flex flex-grow items-stretch focus-within:z-10">
@@ -88,12 +80,17 @@
                                 <path d="M7 8a3 3 0 100-6 3 3 0 000 6zM14.5 9a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM1.615 16.428a1.224 1.224 0 01-.569-1.175 6.002 6.002 0 0111.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 017 18a9.953 9.953 0 01-5.385-1.572zM14.5 16h-.106c.07-.297.088-.611.048-.933a7.47 7.47 0 00-1.588-3.755 4.502 4.502 0 015.874 2.636.818.818 0 01-.36.98A7.465 7.465 0 0114.5 16z" />
                             </svg>
                         </div>
-                        <input type="text" name="nombre" id="nombre" class="block w-full rounded-md rounded-l-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Nombre" required>
-                    </div>
+                        <input type="text" name="nombre" id="nombre" formControlName="nombre" (blur)="identificarError();" class="block w-full rounded-md rounded-l-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{nombre_ph}}" required>
+
+                      </div>
+                      <span class="text-clifford self-center justify-center pl-10 absolute font-bold my-16" *ngIf="error_required"  >Tiene que introducir su nombre</span>
+
+
                 </div>
+
                 <div>
                     <div class="mt-2 flex rounded-md shadow-md">
-                        <label for="apellidos" class="sr-only">Apellidos</label>
+                        <label for="apellidos" class="sr-only">{{apellidos_ph}}</label>
 
                         <div class="relative flex flex-grow items-stretch focus-within:z-10">
                             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -101,7 +98,7 @@
                                     <path d="M7 8a3 3 0 100-6 3 3 0 000 6zM14.5 9a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM1.615 16.428a1.224 1.224 0 01-.569-1.175 6.002 6.002 0 0111.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 017 18a9.953 9.953 0 01-5.385-1.572zM14.5 16h-.106c.07-.297.088-.611.048-.933a7.47 7.47 0 00-1.588-3.755 4.502 4.502 0 015.874 2.636.818.818 0 01-.36.98A7.465 7.465 0 0114.5 16z" />
                                 </svg>
                             </div>
-                            <input type="text" name="apellidos" id="apellidos" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Apellidos" required>
+                            <input type="text" name="apellidos" id="apellidos" formControlName="apellidos" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{apellidos_ph}}" required>
                         </div>
                     </div>
                 </div>
@@ -116,34 +113,27 @@
                             <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
                         </svg>
                         </div>
-                        <input type="email" name="email" id="email" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Correo electrónico" required>
+                        <input type="email" name="email" id="email" formControlName="email" [(ngModel)]="email" #emailInput class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{email_ph}}" required>
                     </div>
                 </div>          
                 <div>
-                    <label for="password" class="sr-only">Password</label>
-                    
-                    <div class="relative mt-2 rounded-md shadow-md">
+                  <label for="password" class="sr-only">Repeat Password</label>
+                  <div class="relative mt-2 rounded-md shadow-md flex row">
                         
-                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="h-5 w-5 text-[#004aad] group-hover:text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                        <input type="password" name="password" id="password" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Contraseña" required>
+                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                        <svg class="h-5 w-5 text-[#004aad] group-hover:text-indigo-400 mr-16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
+                        </svg>
+                        
                     </div>
+                    
+                    <input type="password" formControlName="password" name="password" id="password" class="block w-full rounded-md  py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{confirmar_password_ph}}" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex self-center p-2 cursor-pointer" (click)="mirarPassword()" width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5s5 2.24 5 5s-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3s3-1.34 3-3s-1.34-3-3-3z"/></svg>
+                  </div>
                 </div> 
                 <div>
-                    <label for="password" class="sr-only">Repeat Password</label>
                     
-                    <div class="relative mt-2 rounded-md shadow-md">
-                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="h-5 w-5 text-[#004aad] group-hover:text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                        
-                        <input type="password" name="password-repeat" id="password-repeat" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Repetir Contraseña" required>
-                    </div>
+                    
                 </div> 
                 <div>
                     <!--Disponiblilidad-->
@@ -157,7 +147,7 @@
 
                               </div>
                               
-                              <input type="text" name="disponibilidad" id="disponibilidad" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Horario de disponibilidad" required>
+                              <input type="text" name="disponibilidad" id="disponibilidad" formControlName="horario_disponibilidad" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{horario_ph}}" required>
                             </div>
 
 
@@ -165,19 +155,7 @@
                 </div>
                 <!--Estado de disponibilidad actual-->
                 <div class="relative my-2 rounded-md shadow-md ">
-                  <select id="estado" name="estado" class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-[#A4A4A4] focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 " required>
-                    <option hidden selected class="" value="">Estado actual</option>
-                    <option class="py-4 h-4 relative text-[#000000]" value="disponible">
-                      <span class="block truncate ">Disponible</span>
-                      <span class="absolute inset-y-0 right-0 flex items-right pr-2">
-                        <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd" />
-                        </svg>
-                      </span>
-                    </option>
-                    <option class="py-4 relative text-[#000000]" value="ocupado">Ocupado<span class=" h-1 w-1 rounded-full  bg-green-400 inline-flex items-center"></span></option>
-                    <option class="py-4 relative text-[#000000]"value="no_disponible">No Disponible</option>
-                  </select>
+                  <ng-select [items]="estados" name="estado" id="estado" bindLabel="name" (change)="itemSelected($event)" placeholder="{{estado_ph}}"></ng-select>
                 </div>
               <!--Manera de contactar-->
                 <div>
@@ -186,18 +164,8 @@
                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                       <svg xmlns="http://www.w3.org/2000/svg" class="text-[#004aad]" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19.95 21q-3.225 0-6.287-1.438t-5.425-3.8q-2.363-2.362-3.8-5.425T3 4.05q0-.45.3-.75t.75-.3H8.1q.35 0 .625.225t.325.575l.65 3.5q.05.35-.013.638T9.4 8.45L7 10.9q1.05 1.8 2.625 3.375T13.1 17l2.35-2.35q.225-.225.588-.337t.712-.063l3.45.7q.35.075.575.338T21 15.9v4.05q0 .45-.3.75t-.75.3Z"/>
                       </svg>
-
-
                     </div>
-                    
-                    <select [value]="contactarDefault"  (ngModelChange)="changeValue(registerForm)"  name="forma_contactar" id="forma_contactar" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-[#A4A4A4]  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Horario de disponibilidad" required>
-                      <option hidden selected class="text-[#A4A4A4]" value="">A través de qué medio desea contactar</option>
-                      <option class="py-4 relative text-[#000000]" [value]="formasContactar[0]">Telefono</option> 
-
-                      <option class="py-4 relative text-[#000000]" [value]="formasContactar[1]">Correo</option>
-                      <option></option>
-                    </select>
-
+                    <ng-select [items]="gadgets" class="border-0" bindLabel="name" (change)="itemSelected($event)" [clearable]="false" placeholder="{{contacto_ph}}"></ng-select>
                   </div>
 
 
@@ -205,10 +173,10 @@
               </div>
                 <div>
                         <div class="flex rounded-md shadow-md">
-                            <label for="disponibilidad" class="sr-only">Descripcion</label>
+                            <label for="descripción" class="sr-only">Descripcion</label>
 
                             <div class="relative flex flex-grow items-stretch focus-within:z-10">
-                              <textarea rows="3" name="comment" id="comment" class="block w-full resize-none border-0 rounded-md bg-transparent py-1.5 px-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="&nbsp;Añade una descripción..."></textarea>                            </div>
+                              <textarea rows="3" name="descripción" id="descripción" formControlName="descripcion" class="block w-full resize-none border-0 rounded-md bg-transparent py-1.5 px-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="&nbsp;{{descripcion_ph}}"></textarea>                            </div>
                         </div>
                 </div>
                 <div>
@@ -217,16 +185,16 @@
                       <svg class="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
                       </svg>
-                      <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-md border-2 border-black border-solid  hover:bg-gray-50">Foto de perfil</button>
+                      <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-md border-2 border-black border-solid  hover:bg-gray-50">{{foto_perfil}}</button>
                     </div>
                   </div>
                 </div>
                 <div class="relative flex items-start pb-4 pt-3.5">
                   <div class="min-w-0 flex-1 text-sm leading-6">
-                    <label for="comments" class="font-medium text-gray-900 text-center">¿Te gustaría formar parte de nuestra comunidad ayudando a gente que necesita conversación o acompañamiento?</label>
+                    <label for="pedir_tlf" class="font-medium text-gray-900 text-center">{{preguntar_tlf}}</label>
                   </div>
                   <div class="ml-3 flex h-6 items-center">
-                    <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 cursor-pointer">
+                    <input id="pedir_tlf" aria-describedby="comments-description" name="pedir_tlf" [checked]="telefono_check" (change)="cambiar()"  type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 cursor-pointer">
                   </div>
                 </div>
                 <div>
@@ -245,7 +213,7 @@
             <span class="absolute inset-y-0 left-0 flex items-center pl-3">
               
             </span>
-            Comenzar
+            {{comenzar_btn}}
           </button>
         </div>
       </form>
@@ -273,8 +241,14 @@
           </div>
         </div>
       </div>
+      <app-notification-success *ngIf="succes_login" class="modal-login pointer-events-auto w-full max-w-sm bg-[#00C851] rounded-lg text-white shadow-lg ring-1 ring-black ring-opacity-5 z-10 bottom-[90%] right-[1%] absolute"></app-notification-success>
+      <app-notification-error class="text-clifford self-center  p-3">
+      </app-notification-error>
+      <!--Modal form telefono-->
     </div>
   </div>
+  <app-modal-tlf (cerrar)="cerrarModal($event)" *ngIf="tlfModal" [usuario]="usuario" class="h-full w-full fixed inset-0 bg-gray-500 bg-[#f2f2f2] bg-opacity-10 transition-opacity"></app-modal-tlf>
+
   <!--
 </body>
 </html>-->

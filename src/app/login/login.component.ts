@@ -37,9 +37,9 @@ export class LoginComponent {
   strError:string;
   
  
-
+email:string;
+password:string;
   
-
 
   
 
@@ -54,8 +54,10 @@ export class LoginComponent {
 
   async login(form:FormGroup){
 
-    const email = form.value.email;
-    const password = form.value.password;
+    this.email = form.value.email.toLowerCase();
+    this.password = form.value.password;
+    const email = this.email;
+    const password = this.password;
    const response= await this.loginService.login(email,password);
   
    this.strError = this.loginService.strError;

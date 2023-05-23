@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { Usuario } from 'src/app/usuarios';
 
@@ -17,7 +18,7 @@ export class ModalTlfComponent {
   @Input() usuario:Usuario;
 
   guardar_tlf:FormGroup;
-  constructor(private fb:FormBuilder, private newUser:UserServiceService) {
+  constructor(private fb:FormBuilder, private newUser:UserServiceService, private router:Router) {
     this.guardar_tlf = this.fb.group({
       tlf:[''],
     })
@@ -30,6 +31,9 @@ export class ModalTlfComponent {
     this.newUser.guardarUsuario(this.usuario).then(() =>{
       console.log(this.usuario);
       console.log("Usuario guardado");
+      this.sendUid();
+      this.router.navigate(['./perfil']);
+
     }).catch(error =>{
       console.log(error);
     }); 
@@ -37,6 +41,16 @@ export class ModalTlfComponent {
 
    añadirTlf(){
     this.usuario.telefono = this.guardar_tlf.value.tlf;
+   }
+
+   sendUid(){
+    console.log("usuario: ",this.usuario);
+    console.log("usuario ID : ", this.usuario.uid);
+    const uid = this.usuario.uid;
+    console.log(" sin mandar: ",uid);
+    this.newUser.setUsuario(uid);
+    
+    
    }
 
 

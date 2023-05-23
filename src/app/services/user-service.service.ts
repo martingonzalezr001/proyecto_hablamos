@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Usuario } from '../usuarios';
 
 @Injectable({
@@ -12,10 +12,23 @@ export class UserServiceService {
 
   }
 
-  private  usuario$ = new Subject<any>();
+ // private  usuario$ = new Subject<any>();
+
+  private dataUser = new BehaviorSubject<any>(null);
+  public dataUser$ = this.dataUser.asObservable();
+
+  setUsuario(uid:any){
+    this.dataUser.next(uid);
+  }
 
   guardarUsuario(usuario:Usuario):Promise<any>
 {
     return this.firestore.collection('usuarios').add(usuario);
+  }
+
+  getInfoUser(uid:any){
+    console.log("UID cuyo usuario se muestran sus datos: ",uid);
+    
+    return this.firestore.collection('usuarios', ref => ref.where('uid', '==', uid)).get();
   }
 }

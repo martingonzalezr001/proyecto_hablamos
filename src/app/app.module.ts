@@ -19,7 +19,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { ConectarComponent } from './conectar/conectar.component';
 import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
 import { RecuperarPasswordComponent } from './recuperar-password/recuperar-password.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NotificationSuccessComponent } from './extra-components/notification-success/notification-success.component';
 import { LoginServiceService } from './services/login-service.service';
@@ -62,6 +62,7 @@ const routes: Routes = [
     AngularFireDatabaseModule,
     ReactiveFormsModule,
     NgSelectModule,
+    FormsModule,
 
 
   ],

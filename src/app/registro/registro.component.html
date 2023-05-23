@@ -80,10 +80,10 @@
                                 <path d="M7 8a3 3 0 100-6 3 3 0 000 6zM14.5 9a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM1.615 16.428a1.224 1.224 0 01-.569-1.175 6.002 6.002 0 0111.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 017 18a9.953 9.953 0 01-5.385-1.572zM14.5 16h-.106c.07-.297.088-.611.048-.933a7.47 7.47 0 00-1.588-3.755 4.502 4.502 0 015.874 2.636.818.818 0 01-.36.98A7.465 7.465 0 0114.5 16z" />
                             </svg>
                         </div>
-                        <input type="text" name="nombre" id="nombre" formControlName="nombre" (blur)="identificarError();" class="block w-full rounded-md rounded-l-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{nombre_ph}}" required>
+                        <input type="text" name="nombre" id="nombre"  formControlName="nombre" (blur)="identificarError();" [ngClass]="{'empty': error_required_name == true}" class="block w-full rounded-md rounded-l-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{nombre_ph}}" required>
 
                       </div>
-                      <span class="text-clifford self-center justify-center pl-10 absolute font-bold my-16" *ngIf="error_required"  >Tiene que introducir su nombre</span>
+                      <span class="text-clifford self-center justify-center pl-10 absolute font-bold my-16" *ngIf="error_required_name"  >Tiene que introducir su nombre</span>
 
 
                 </div>
@@ -98,8 +98,10 @@
                                     <path d="M7 8a3 3 0 100-6 3 3 0 000 6zM14.5 9a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM1.615 16.428a1.224 1.224 0 01-.569-1.175 6.002 6.002 0 0111.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 017 18a9.953 9.953 0 01-5.385-1.572zM14.5 16h-.106c.07-.297.088-.611.048-.933a7.47 7.47 0 00-1.588-3.755 4.502 4.502 0 015.874 2.636.818.818 0 01-.36.98A7.465 7.465 0 0114.5 16z" />
                                 </svg>
                             </div>
-                            <input type="text" name="apellidos" id="apellidos" formControlName="apellidos" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{apellidos_ph}}" required>
+                            <input type="text" name="apellidos" id="apellidos" formControlName="apellidos" (blur)="identificarError();" [ngClass]="{'empty': error_required_apellidos == true}" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{apellidos_ph}}" required>
                         </div>
+                        <span class="text-clifford self-center justify-center pl-10 absolute font-bold my-16" *ngIf="error_required_apellidos"  >Tiene que introducir sus apellidos</span>
+
                     </div>
                 </div>
 
@@ -113,7 +115,7 @@
                             <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
                         </svg>
                         </div>
-                        <input type="email" name="email" id="email" formControlName="email" [(ngModel)]="email" #emailInput class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{email_ph}}" required>
+                        <input type="email" name="email" id="email" formControlName="email" #emailInput class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{email_ph}}" required>
                     </div>
                 </div>          
                 <div>
@@ -126,10 +128,13 @@
                         </svg>
                         
                     </div>
-                    
-                    <input type="password" formControlName="password" name="password" id="password" class="block w-full rounded-md  py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{confirmar_password_ph}}" required>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="flex self-center p-2 cursor-pointer" (click)="mirarPassword()" width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5s5 2.24 5 5s-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3s3-1.34 3-3s-1.34-3-3-3z"/></svg>
+                    <span class="text-clifford self-center justify-center pl-10 absolute font-bold my-16" *ngIf="error_same_password"  >Tiene que coincidir con su anterior contraseña</span>
+
+                    <input type="password" formControlName="confirmar_contrasenia" name="password" id="password" (blur)="identificarError();" [ngClass]="{'empty': error_same_password == true}" class="block w-full rounded-md  py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{confirmar_password_ph}}" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex self-center p-2 cursor-pointer" (click)="mirarPassword()"  width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5s5 2.24 5 5s-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3s3-1.34 3-3s-1.34-3-3-3z"/></svg>
                   </div>
+                  
+
                 </div> 
                 <div>
                     
@@ -138,24 +143,27 @@
                 <div>
                     <!--Disponiblilidad-->
                   <div>
-                            <label for="disponibilidad" class="sr-only">Disponibilidad</label>
-                            <div class="relative my-2 rounded-md shadow-md">
-                              <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#004aad]" viewBox="0 0 24 24"><g fill="none"><path d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z"/>
-                                  <path fill="currentColor" d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2Zm0 4a1 1 0 0 0-1 1v5a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V7a1 1 0 0 0-1-1Z"/></g>
-                                </svg>
+                    <label for="disponibilidad" class="sr-only">Horario disponibilidad</label>
 
-                              </div>
-                              
-                              <input type="text" name="disponibilidad" id="disponibilidad" formControlName="horario_disponibilidad" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{horario_ph}}" required>
-                            </div>
+                    <div class="relative flex flex-grow items-stretch focus-within:z-10 shadow-md my-2">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#004aad]" viewBox="0 0 24 24"><g fill="none"><path d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z"/>
+                             <path fill="currentColor" d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2Zm0 4a1 1 0 0 0-1 1v5a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V7a1 1 0 0 0-1-1Z"/></g>
+                          </svg>
+                        </div>
+                        <input type="text" name="disponibilidad" id="disponibilidad" formControlName="horario_disponibilidad" (blur)="identificarError();" [ngClass]="{'empty': error_required_horario == true}" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{horario_ph}}" required>
+                        <span class="text-clifford self-center justify-center pl-10 absolute font-bold my-16" *ngIf="error_required_horario"  >Introduzca un horario. Ejemplo: Lunes de 14:00-15:00</span>
+
+                      </div>
+
+
 
 
                   </div>
                 </div>
                 <!--Estado de disponibilidad actual-->
                 <div class="relative my-2 rounded-md shadow-md ">
-                  <ng-select [items]="estados" name="estado" id="estado" bindLabel="name" (change)="itemSelected($event)" placeholder="{{estado_ph}}"></ng-select>
+                  <ng-select [items]="estados" name="estado" id="estado"  bindLabel="name" (change)="itemSelected($event)" placeholder="{{estado_ph}}"></ng-select>
                 </div>
               <!--Manera de contactar-->
                 <div>
@@ -165,10 +173,10 @@
                       <svg xmlns="http://www.w3.org/2000/svg" class="text-[#004aad]" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19.95 21q-3.225 0-6.287-1.438t-5.425-3.8q-2.363-2.362-3.8-5.425T3 4.05q0-.45.3-.75t.75-.3H8.1q.35 0 .625.225t.325.575l.65 3.5q.05.35-.013.638T9.4 8.45L7 10.9q1.05 1.8 2.625 3.375T13.1 17l2.35-2.35q.225-.225.588-.337t.712-.063l3.45.7q.35.075.575.338T21 15.9v4.05q0 .45-.3.75t-.75.3Z"/>
                       </svg>
                     </div>
-                    <ng-select [items]="gadgets" class="border-0" bindLabel="name" (change)="itemSelected($event)" [clearable]="false" placeholder="{{contacto_ph}}"></ng-select>
+                    <ng-select [items]="gadgets" class="border-0" bindLabel="name" [(ngModel)]="forma_contactar" (change)="itemSelected($event)"  placeholder="{{contacto_ph}}"></ng-select>
                   </div>
 
-
+        <!--  Descripcion   -->
         </div>
               </div>
                 <div>
@@ -242,7 +250,7 @@
         </div>
       </div>
       <app-notification-success *ngIf="succes_login" class="modal-login pointer-events-auto w-full max-w-sm bg-[#00C851] rounded-lg text-white shadow-lg ring-1 ring-black ring-opacity-5 z-10 bottom-[90%] right-[1%] absolute"></app-notification-success>
-      <app-notification-error class="text-clifford self-center  p-3">
+      <app-notification-error *ngIf="!camposRellenados" class="text-clifford self-center  p-3">
       </app-notification-error>
       <!--Modal form telefono-->
     </div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators } from '
 import { LoginServiceService } from '../services/login-service.service';
 import { UserServiceService } from '../services/user-service.service';
 import { Usuario } from '../usuarios';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -26,6 +27,7 @@ export class RegistroComponent {
 
   preguntar_tlf = '¿Te gustaría formar parte de nuestra comunidad ayudando a gente que necesita conversación o acompañamiento?';
   comenzar_btn = 'Comenzar';
+  error_campos = 'Faltan campos por rellenar';
   
   
   
@@ -39,8 +41,15 @@ export class RegistroComponent {
     console.log(this.loginService.email);
     console.log(this.loginService.password);
     console.log(this.loginService.uid);
+
+    //Guardar datos del login anterior
+
     this.email = this.loginService.email;
+    this.password = this.loginService.password;
     this.sobreescribirEmail();
+
+    console.log(this.password);
+    //console.log(this.registrar_usuario.value.password);
 
 
   
@@ -54,7 +63,12 @@ export class RegistroComponent {
 
   //Variables de input
   email:string;
+  password:string;
   //falta passord para compararlo con la que lo confirma
+
+
+  //Variable inputs 
+  camposRellenados:boolean = true;
 
   sobreescribirEmail(){
     const inputEmail = document.querySelector('#email');
@@ -119,6 +133,17 @@ usuario:any;
 
   //Boton comenzar
   comenzar(){
+    this.registrar_usuario.value.estado = this.estados[1];
+    this.registrar_usuario.value.forma_contactar = this.forma_contactar[1];
+    console.log( "Estado: " + this.registrar_usuario.value.estado + ".\nTipo de dato: " + this.registrar_usuario.value.estado.type);
+    if(this.registrar_usuario.value.nombre == '' || this.registrar_usuario.value.apellidos == '' || this.registrar_usuario.value.horario_disponibilidad == '' || this.registrar_usuario.value.estado == undefined || this.registrar_usuario.value.forma_contactar == undefined){
+      this.camposRellenados = false;
+      return ;
+    }
+
+    if(this.camposRellenados == false){
+      console.log("Faltan cositas");
+    }
 
     this.usuario = {
       uid : this.loginService.uid,
@@ -146,7 +171,10 @@ usuario:any;
     }else{
       this.newUser.guardarUsuario(this.usuario).then(() =>{
         console.log(this.usuario);
-        console.log("Usuario guardado");
+        console.log("Usuario guardado: " + this.usuario.uid);
+        this.sendUid();
+        this.router.navigate(['./perfil']);
+        
       }).catch(error =>{
         switch(error.code){
           case 'Unsupported field value: undefined':
@@ -154,6 +182,11 @@ usuario:any;
         }
       }); 
     }
+  }
+
+  sendUid(){
+    const uid = this.loginService.uid;
+    this.newUser.setUsuario(uid);
   }
 
 
@@ -185,7 +218,7 @@ itemSelected(item:any){
 
  
  
-  constructor(private fb: FormBuilder, private loginService:LoginServiceService , private newUser:UserServiceService) {
+  constructor(private fb: FormBuilder, private loginService:LoginServiceService , private newUser:UserServiceService, private router:Router) {
     this.registrar_usuario = this.fb.group({
       nombre: ['',Validators.required],
       apellidos: ['',Validators.required],
@@ -194,7 +227,7 @@ itemSelected(item:any){
       estado: ['',Validators.required],
       horario_disponibilidad: ['',Validators.required],
       forma_contactar: ['',Validators.required],
-      descripcion: ['',Validators.required],
+      descripcion: [''],
       telefono: ['']
     });
 
@@ -204,13 +237,73 @@ itemSelected(item:any){
    }
 
 
-   //Control de errores.
-   error_required:boolean = false;
+   //Control de errores, variables y el método.
+   error_required_name:boolean = false;
+   error_required_apellidos:boolean = false;
+   error_same_password:boolean = false;
+   error_required_horario:boolean = false;
+
+
+
    identificarError(){
+
+    //Nombre
     if(this.registrar_usuario.get('nombre')?.hasError('required') && this.registrar_usuario.get('nombre')?.touched){
+      this.nombre_ph = '';
       console.log("Nombre requerido");
-      this.error_required = true;
+      this.error_required_name = true;
+    }else{
+      this.nombre_ph = 'Nombre';
+      this.error_required_name = false;
     }
+    //Apellidos
+    if(this.registrar_usuario.get('apellidos')?.hasError('required') && this.registrar_usuario.get('apellidos')?.touched){
+      this.apellidos_ph = '';
+      console.log("Apellidos requeridos");
+      this.error_required_apellidos = true;
+
+    }else{
+      this.apellidos_ph = 'Apellidos';
+      this.error_required_apellidos = false;
+    }
+    //Contraseña
+    if(this.registrar_usuario.get('confirmar_contrasenia')?.hasError('required') && this.registrar_usuario.get('confirmar_contrasenia')?.touched && this.registrar_usuario.get('confirmar_contrasenia')){
+      this.confirmar_password_ph = '';
+      console.log("Contraseña requerida, tiene que ser igual que " + this.loginService.password);
+      this.error_same_password = true;
+    }else{
+      this.confirmar_password_ph = 'Confirmar contraseña';
+      this.error_same_password = false;
+    }
+
+    //Horario
+    if(this.registrar_usuario.get('horario_disponibilidad')?.hasError('required') && this.registrar_usuario.get('horario_disponibilidad')?.touched){
+
+      this.horario_ph = '';
+      console.log("Horario inicial requerido");
+      this.error_required_horario = true;
+    }else{
+      this.horario_ph = 'Horario de disponibilidad';
+      this.error_required_horario = false;
+    }
+    
+
+ /*    if(this.error_required_name){
+      const nombre = this.registrar_usuario.get('nombre');
+      
+      
+    }
+    if(this.error_required_apellidos){
+      const apellidos = this.registrar_usuario.get('apellidos');
+    }
+
+    if(this.error_same_password){
+      const password = this.registrar_usuario.get('confirmar_contrasenia');
+    }
+
+    if(this.error_required_horario){
+      const horario = this.registrar_usuario.get('horario_disponibilidad');
+    } */
   }
 
 

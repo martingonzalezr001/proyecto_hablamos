@@ -1,5 +1,5 @@
 export class Usuario{
-    id:string;
+    uid:string;
     nombre:string;
     apellidos:string;
     email:string;
@@ -10,8 +10,8 @@ export class Usuario{
     foto:string;
     telefono:string;
 
-    constructor(id:string, nombre:string, apellidos:string, email:string, horario:string, estado:string, forma_contactar:string, descripcion:string, foto:string, telefono:string){
-        this.id = id;
+    constructor(uid:string, nombre:string, apellidos:string, email:string, horario:string, estado:string, forma_contactar:string, descripcion:string, foto:string, telefono:string){
+        this.uid = uid;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;

@@ -44,7 +44,7 @@
                     <b>Horario:</b><br> {{userParams[7]}}
                 </h3>
 
-                    <a href="editor.html" class="btn-edit relative justify-end ml-12 px-3.5 py-2.5 text-sm font-semibold  rounded-md transition duration-150  bg-[#004aad] text-[#fff] hover:bg-[#2A61AB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    <a (click)="editHorarioBtn()" class=" cursor-pointer btn-edit relative justify-end ml-12 px-3.5 py-2.5 text-sm font-semibold  rounded-md transition duration-150  bg-[#004aad] text-[#fff] hover:bg-[#2A61AB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         
                         Editar
                     </a>
@@ -58,20 +58,16 @@
         Contactar con alguien
     </a>
 
-    <div class="flex justify-center flex-col my-2 mt-3">
+    <div class="w-[80%] flex justify-center flex-col my-2 mt-3">
         <div class="py-2 px-3 grid grid-rows-1 grid-cols-3 gap-3 mb-4">
             <span class="font-bold text-black">Estado:</span>
-            <ng-select [items]="estados_perfil" name="estado" id="estado"  bindLabel="name" (change)="itemSelected($event)" ></ng-select>
+            <ng-select class="w-full" [items]="estados_perfil" name="estado" id="estado"  bindLabel="name" [clearable]="false" [(ngModel)]="userParams[5]"  (change)="itemSelected(5)" ></ng-select>
 
             <span class=" h-4 w-4 rounded-full mr-10 bg-green-400 ml-2 inline-flex self-center items-center"></span>
         </div>
         <div class="mb-10 grid ml-3 grid-rows-1 grid-cols-1 gap-3">
             <span class="mr-5  font-bold text-black" >Medio para contactar:</span>
-            <select class="border border-solid border-black p-2 rounded-md">
-                <option class="" value="correo">{{userParams[6]}}</option>
-                <option value="tlf">Teléfono</option>
-                
-            </select>
+            <ng-select class="w-full" [items]="contactar_perfil" name="contactar" id="contactar" bindLabel="contactar" [clearable]="false" [(ngModel)]="userParams[6]" (change)="itemSelected(6)"></ng-select>
         </div>
         <a type="button" href="./contactar.html" class=" group relative  flex justify-center rounded-md bg-white px-3 py-2 my-2 text-sm font-semibold transition duration-300 text-[#BB0000] hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         
@@ -84,3 +80,6 @@
         </a>
     </div>  
 </div>
+
+<app-horario-edit (cerrar)="cerrarModal($event)"  class="h-full w-full fixed inset-0 bg-gray-500 bg-[#f2f2f2] bg-opacity-10 transition-opacity" *ngIf="editHorario"></app-horario-edit>
+

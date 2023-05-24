@@ -25,6 +25,9 @@ import { NotificationSuccessComponent } from './extra-components/notification-su
 import { LoginServiceService } from './services/login-service.service';
 import { NotificationErrorComponent } from './extra-components/notification-error/notification-error.component';
 import { ModalTlfComponent } from './extra-components/modal-tlf/modal-tlf.component';
+import { HorarioEditComponent } from './horario-edit/horario-edit.component';
+import { ElegirHoraComponent } from './elegir-hora/elegir-hora.component';
+import { ElegirDiaComponent } from './elegir-dia/elegir-dia.component';
 
 
 const routes: Routes = [
@@ -50,7 +53,10 @@ const routes: Routes = [
     RecuperarPasswordComponent,
     NotificationSuccessComponent,
     NotificationErrorComponent,
-    ModalTlfComponent,  ],
+    ModalTlfComponent,
+    HorarioEditComponent,
+    ElegirHoraComponent,
+    ElegirDiaComponent,  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

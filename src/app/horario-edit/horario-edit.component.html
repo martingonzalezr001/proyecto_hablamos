@@ -1,0 +1,61 @@
+<div *ngIf="!nuevoHorario" class="relative z-10 w-[90%]" aria-labelledby="modal-title" role="dialog" aria-modal="true" (enviarHorario)="recibeHorarioNuevo($event)">
+    <div class="fixed inset-0 bg-[#6B7280]  bg-opacity-50 transition-opacity"></div>
+    <div class="fixed inset-0 z-10  overflow-y-auto bg-[#ffffff] bg-opacity-75">
+        <div class="flex min-h-full  items-end justify-center p-4 text-center sm:items-center sm:p-0 bg-opacity-100">
+
+
+            <div class="relative transform overflow-hidden rounded-lg bg-[#ffffff] px-4 pb-4  text-left shadow-xl transition-all sm:my-8 sm:w-full w-[90%]  sm:p-5 opacity-100">
+                <a (click)="cerrarModal()" class="top-2 absolute cursor-pointer right-0 text-gray-300 pr-2 hover:text-black">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41z"/></svg>
+                </a>
+
+                <div class="w-[90%] mx-8 place-self-center my-10 p-4 flex flex-col h-auto  ">
+                    <label for="mensaje" class="text-[#004aad] font-bold justify-center  text-center text-2xl mb-8">Horas disponibles:</label>
+                    <div class="justify-center bg-[#f2f2f2f2] flex flex-wrap flex-col rounded-md p-3 " *ngFor="let hora of horariosDisponibles; let i = index ">
+                        <div class="font-bold justify-center border-b-solid border-b-2 border-gray-300 py-4 flex-col" >
+                            <div *ngIf="horarioVacio" class="bg-[#000000]"><span>De momento no hay ningun horario establecido</span></div>
+                          <span class="flex justify-center text-2xl">{{hora[1]}}</span>
+                          <div class="flex  justify-around  flex-row w-[100%]">
+                            <span class="flex text-lg justify-center">{{hora[0]}}</span> 
+                            <svg class="flex hover:text-[#004aad] cursor-pointer transition duration-150" (click)="borrarHorarioDisponible(i)" xmlns="http://www.w3.org/2000/svg"  width="32" height="32"  viewBox="0 0 24 24"><path fill="currentColor" d="M9 17h2V8H9v9Zm4 0h2V8h-2v9Zm-8 4V6H4V4h5V3h6v1h5v2h-1v15H5Z"/></svg>
+                          </div> 
+                          
+                        </div>
+                        <!-- <div class="font-bold justify-center border-b-solid border-b-2 border-gray-300 py-4 flex-col">
+                          <span class="flex justify-center text-2xl">17:00 a 19:30</span>
+                          <div class="flex  justify-around  flex-row w-[100%]">
+                            <span class="flex text-lg justify-center">Martes y jueves</span> 
+                            <svg class="flex hover:text-[#004aad] cursor-pointer transition duration-150" xmlns="http://www.w3.org/2000/svg"  width="32" height="32"  viewBox="0 0 24 24"><path fill="currentColor" d="M9 17h2V8H9v9Zm4 0h2V8h-2v9Zm-8 4V6H4V4h5V3h6v1h5v2h-1v15H5Z"/></svg>
+                          </div> 
+                          
+                        </div>
+                        <div class="font-bold justify-center border-b-solid border-b-2 border-gray-300 py-4 flex-col">
+                          <span class="flex justify-center text-2xl">17:00 a 19:30</span>
+                          <div class="flex  justify-around  flex-row w-[100%]">
+                            <span class="flex text-lg justify-center">Martes y jueves</span> 
+                            <svg class="flex hover:text-[#004aad] cursor-pointer transition duration-150" xmlns="http://www.w3.org/2000/svg"  width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M9 17h2V8H9v9Zm4 0h2V8h-2v9Zm-8 4V6H4V4h5V3h6v1h5v2h-1v15H5Z"/></svg>
+                          </div> 
+                          
+                        </div> --> 
+                    </div>
+                    <div class="py-4 flex justify-center">
+                      <a (click)="addHorarioDisponible()">
+                        <svg class="text-[#004aad] cursor-pointer hover:text-[#2A61AB] transition duration-150" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="currentColor" d="M11 17h2v-4h4v-2h-4V7h-2v4H7v2h4v4Zm1 5q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Z"/>
+                        </svg>
+                      
+                      </a>
+                      </div>
+            
+            
+            
+                  </div>
+            
+            
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+<app-elegir-hora (cerrar)="cerrarModal2($event)" *ngIf="nuevoHorario" class="h-full w-full fixed inset-0 bg-gray-500 bg-[#f2f2f2] bg-opacity-10 transition-opacity"></app-elegir-hora>
+

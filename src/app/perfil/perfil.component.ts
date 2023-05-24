@@ -35,13 +35,16 @@ export class PerfilComponent {
         const correo = data.correo;
         const telefono = data.telefono
         const estado = data.estado;
-        const forma_contactar = data.forma_contactar;
+        const forma_contactar = data.forma_contactar
         const horario_disponibilidad = data.horario_disponibilidad;
         const descripcion = data.descripcion;
 
         this.userParams.push(id,nombre,apellidos,correo,telefono,estado,forma_contactar,horario_disponibilidad,descripcion);
 
         console.log("userParams: ",this.userParams);
+
+        console.log(this.contactar_perfil);
+        console.log(this.estados_perfil);
       });
     })); 
   }
@@ -52,7 +55,70 @@ export class PerfilComponent {
     {id:3, name:"Ocupado"},
   ]
 
-  itemSelected(item:any){
+  contactar_perfil = [
+    {id:1, name:"Teléfono"},
+    {id:2, name:"Correo electronico"},
+  ]
 
-  }
+    itemSelected(item:number){
+      if(item == 5){
+
+        switch(this.userParams[5]){
+          case "Disponible":
+            this.estados_perfil = [{id:1, name:this.userParams[5]},{id:2, name:"No disponible"},{id:3, name:"Ocupado"}];
+            break;
+          case "No disponible":
+            this.estados_perfil = [{id:2, name:this.userParams[5]},{id:1, name:"Disponible"},{id:3, name:"Ocupado"}];
+            break;
+          case "Ocupado":
+            this.estados_perfil = [{id:3, name:this.userParams[5]},{id:1, name:"Disponible"},{id:2, name:"No disponible"}];
+            break;          
+        }
+      }
+      else if(item == 6){
+
+        switch(this.userParams[6]){
+          case "Teléfono":
+            this.contactar_perfil = [{id:1, name:this.userParams[6]},{id:2, name:"Correo electronico"}];
+            break;
+          case "Correo electronico":
+            this.contactar_perfil = [{id:2, name:this.userParams[6]},{id:1, name:"Teléfono"}];
+            break;
+          } 
+
+
+      }
+
+        
+    }
+      /* switch(item.id){
+        case item.id > 3:
+          switch(this.userParams[6]){
+            case "Teléfono":
+              this.contactar_perfil = [{id:4, name:this.userParams[6]},{id:5, name:"Correo electronico"}];
+              break;
+            case "Correo electronico":
+              this.contactar_perfil = [{id:5, name:this.userParams[6]},{id:4, name:"Teléfono"}];
+              break;
+      }
+      break; 
+      
+      }
+      */
+    
+
+      //editar horario
+      editHorario: boolean = false;
+      editHorarioBtn(){
+        this.editHorario = !this.editHorario;
+      }
+
+      cerrarModal(evento:boolean){
+        if(evento){
+          this.editHorario = false;
+        }
+      }
+
+      //editar descripcion
+
 }

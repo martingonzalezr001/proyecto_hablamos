@@ -1,0 +1,42 @@
+<div  class="relative z-10 w-[90%]" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-[#6B7280]  bg-opacity-50 transition-opacity"></div>
+    <div class="fixed inset-0 z-10  overflow-y-auto bg-[#ffffff] bg-opacity-75">
+        <div class="flex min-h-full  items-end justify-center p-4 text-center sm:items-center sm:p-0 bg-opacity-100">
+
+
+            <div class="relative transform overflow-hidden rounded-lg bg-[#ffffff] px-4 pb-4  text-left shadow-xl transition-all sm:my-8 sm:w-full w-[90%]  sm:p-5 opacity-100">
+                <a (click)="cerrarModal()" class="top-2 absolute cursor-pointer right-0 text-gray-300 pr-2 hover:text-black">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41z"/></svg>
+                </a>
+
+
+      
+        <div class="flex justify-center text-2xl text-[#004aad] font-bold">Elige en qué días de la semana vas a estar disponible entre :  <span>{{ horarioSeleccionado }}</span></div>
+        <div class="flex flex-row flex-wrap mx-3 justify-center text-lg font-semibold py-4 px-4" *ngFor="let dia of dias">
+            <div class="flex flex-col mx-5 justify-center">
+                <span class="pb-3">{{ dia }}</span>
+                <input type="checkbox" (change)="addDay(dia)" [id]="dia">
+            </div>
+            
+        </div>
+        <div class="flex flex-row justify-center mx-3 my-3">
+            
+                <a (click)="generarHorarioFinal()" class="bg-[#004aad] rounded-full cursor-pointer self-center hover:bg-[#2A61AB] transition duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mx-3">
+                    <svg class="text-[#fff]" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="m10 16.4l-4-4L7.4 11l2.6 2.6L16.6 7L18 8.4l-8 8Z"/></svg>
+                </a>
+                <a (click)="cerrarModal()" class="bg-white  rounded-full cursor-pointer self-center hover:bg-[#b8b5b5] transition duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mx-3 px-1 py-1">
+                    <svg class="text-[#BB0000]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z"/></svg>
+                </a>
+            
+        </div>
+
+
+    
+      
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+    

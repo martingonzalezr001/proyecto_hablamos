@@ -1,0 +1,60 @@
+<div  class="relative z-10 w-[90%]" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-[#6B7280]  bg-opacity-50 transition-opacity"></div>
+    <div class="fixed inset-0 z-10  overflow-y-auto bg-[#ffffff] bg-opacity-75">
+        <div class="flex min-h-full  items-end justify-center p-4 text-center sm:items-center sm:p-0 bg-opacity-100">
+
+
+            <div class="relative transform overflow-hidden rounded-lg bg-[#ffffff] px-4 pb-4  text-left shadow-xl transition-all sm:my-8 sm:w-full w-[90%]  sm:p-5 opacity-100">
+                <a (click)="cerrarModal()" class="top-2 absolute cursor-pointer right-0 text-gray-300 pr-2 hover:text-black">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41z"/></svg>
+                </a>
+
+                <div class="w-[90%] mx-8 place-self-center my-10 p-4 flex flex-col h-auto  ">
+                    <label for="mensaje" class="text-[#004aad] font-bold justify-center  text-center text-2xl mb-8">Elige hora:</label>
+                    
+                    <div class="flex items-center justify-center px-4  sm:px-6   lg:px-8 container-div w-[80%] xs:w-[100%] m-auto">
+                        <div class="grid grid-cols-2  grid-rows-2 w-[100%]">
+                            <div class=" py-3 flex flex-col">
+                                <div class=" p-5 text-2xl bg-[#4682B4] flex justify-center font-semibold text-[#fff] rounded-tl-md ">Hora inicio</div>
+                                <div class=" flex justify-center flex-col h-[62%]  overflow-y-scroll rounded-br-md border-solid border-2 border-gray-150 shadow-black" >
+                                    <div *ngFor="let hora of horas; let i = index" class="flex flex-col-reverse max-h-[80vh]">
+                                        <div class=" h-[80%] flex justify-center cursor-pointer hover:bg-[#d1d5db] transition duration-200" id="{{hora}}" [ngClass]="{'selected': indiceInicioSeleccionado == i}" (click)="seleccionarHoraInicio(i)">{{hora}}</div>
+                                    </div>
+                                    
+                                       
+                                </div>
+                
+                
+                            </div>
+                            <div  class="text:2xl py-3 flex flex-col">
+                                <div class=" p-5 text-2xl bg-[#4682B4] flex justify-center font-semibold text-[#fff] rounded-tr-md ">Hora fin</div>
+                                <div class=" flex justify-center flex-col h-[62%]  overflow-y-scroll rounded-br-md border-solid border-2 border-gray-150 shadow-black" >
+                                    <div *ngFor="let hora of horas; let j = index" class="flex flex-col-reverse max-h-[80vh]">
+                                        <div class=" h-[80%] flex justify-center cursor-pointer hover:bg-[#d1d5db] transition duration-200" id="{{hora}}" [ngClass]="{'selected': indiceFinSeleccionado == j}" (click)="seleccionarHoraFin(j)">{{hora}}</div>
+                                    </div>
+                                    
+                                       
+                                </div>
+                                <div class="flex flex-row justify-center m-2 py-2w-[100%]">
+                                    <a (click)="horarioSeleccionado()" class="rounded-md cursor-pointer  bg-[#004aad] w-24 px-3.5 m-2 py-2.5 text-md font-semibold text-[#fff] shadow-sm hover:bg-[#2A61AB] transition duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Siguiente <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m14 18l-1.4-1.45L16.15 13H4v-2h12.15L12.6 7.45L14 6l6 6l-6 6Z"/></svg></a>
+                                    <a (click)="cerrarModal()" class="rounded-md cursor-pointer bg-white hover:bg-[#b8b5b5] w-24 px-3.5 m-2 py-2.5 text-md font-semibold text-[#BB0000] transition duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cancelar <svg  xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z"/></svg></a>
+                                </div>
+                            </div>
+            
+                            
+                            
+                        </div>
+                    </div>
+            
+            
+            
+                  </div>
+            
+            
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+<app-elegir-dia *ngIf="elegirDia" [horarioSeleccionado]="horarioSeleccionado()"></app-elegir-dia>

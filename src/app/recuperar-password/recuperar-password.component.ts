@@ -13,8 +13,9 @@ export class RecuperarPasswordComponent {
   correo_electronico = 'Correo electrónico';
   enviar = 'Enviar correo para recuperar contraseña';
   recuperar_desicripcion = 'Escribe el correo electrónico que utilizaste para registrarte y te enviaremos un correo con un enlace para recuperar tu contraseña';
+  recuperar_msg = 'Se ha enviado un correo a tu cuenta de correo electrónico con un enlace para recuperar tu contraseña';
   enviar_btn = 'Enviar a mi correo';
-
+  correoEnviado:boolean = false;
 
   recuperar:FormGroup;
   correo:string = ''
@@ -29,7 +30,25 @@ export class RecuperarPasswordComponent {
 
     const correo = this.recuperar.value.correo;
     console.log(correo);
-    this.af.sendPasswordResetEmail(correo).then(()=>{}).catch(()=>{});
+    this.af.sendPasswordResetEmail(correo).then(()=>{
+      this.correoEnviado = true;
+
+      setTimeout(() => {
+        this.ocultarMensaje();
+      }, 2000);
+
+    }).catch((err)=>{
+      console.log(err);
+    });
   }
 
+  ocultarMensaje(){
+    this.correoEnviado = false;
+  }
+
+
+  abrirNotificacion(texto1:string, texto2:string){
+    texto1 = '¡Correo enviado!';
+    texto2 = 'Se ha enviado un correo a tu cuenta de correo electrónico con un enlace para recuperar tu contraseña';
+  }
 }

@@ -36,7 +36,7 @@
                                        
                                 </div>
                                 <div class="flex flex-row justify-center m-2 py-2w-[100%]">
-                                    <a (click)="horarioSeleccionado()" class="rounded-md cursor-pointer  bg-[#004aad] w-24 px-3.5 m-2 py-2.5 text-md font-semibold text-[#fff] shadow-sm hover:bg-[#2A61AB] transition duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Siguiente <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m14 18l-1.4-1.45L16.15 13H4v-2h12.15L12.6 7.45L14 6l6 6l-6 6Z"/></svg></a>
+                                    <a (click)="horarioSeleccionado()" *ngIf="botonSiguiente" class="rounded-md cursor-pointer  bg-[#004aad] w-24 px-3.5 m-2 py-2.5 text-md font-semibold text-[#fff] shadow-sm hover:bg-[#2A61AB] transition duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Siguiente <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m14 18l-1.4-1.45L16.15 13H4v-2h12.15L12.6 7.45L14 6l6 6l-6 6Z"/></svg></a>
                                     <a (click)="cerrarModal()" class="rounded-md cursor-pointer bg-white hover:bg-[#b8b5b5] w-24 px-3.5 m-2 py-2.5 text-md font-semibold text-[#BB0000] transition duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cancelar <svg  xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z"/></svg></a>
                                 </div>
                             </div>
@@ -57,4 +57,4 @@
     </div>
     
 </div>
-<app-elegir-dia *ngIf="elegirDia" [horarioSeleccionado]="horarioSeleccionado()"></app-elegir-dia>
+<app-elegir-dia (cerrar)="cerrarModal()"  *ngIf="elegirDia" [horarioSeleccionado]="horarioSeleccionado()" (enviarHorario)="recibeHorarioNuevo($event)"></app-elegir-dia>

@@ -1,7 +1,7 @@
-<header class="absolute inset-x-0 top-0 z-50">
+<header class="relative inset-x-0 top-0 ">
     <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
-            <button type="button" class="relative inline-flex items-center  bg-gray-100  transition duration-150 rounded-md px-2 py-2 text-[#004aad] ring-inset ring-white  focus:z-10" onclick="history.go(-1)">
+            <button type="button" class="absolute inline-flex items-center  bg-gray-100   rounded-md px-2 py-2 text-[#004aad] ring-inset ring-white hover:border-solid hover:text-[#3558E6]  transition duration-150 focus:z-10" onclick="history.go(-1)">
               <span class="sr-only">Previous</span>
               <svg class="h-10 w-10  border-[#004aad] border-hidden border-2 rounded-md hover:border-solid hover:text-[#3558E6]  transition duration-500 " viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
@@ -15,7 +15,7 @@
 <div class="flex relative min-h-full flex-col  items-center justify-center px-4 py-12 sm:px-6 lg:px-8 container-div">
     
     <img class="inline-block  rounded-full profile-img relative" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
-    <div class="flex rounded-full profile-img absolute top-12 text-sm mx-5 justify-center items-center opacity-0  text-black font-bold hover:bg-[#9ca3af] hover:opacity-70 hover:text-opacity-100 cursor-pointer transition duration-150"><span class="text-center">Cambiar foto de perfil <svg xmlns="http://www.w3.org/2000/svg" class="text-black text-center flex mx-auto self-center" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 23.7q-.825 0-1.413-.587T3 21.7v-14q0-.825.588-1.413T5 5.7h8.925l-2 2H5v14h14v-6.95l2-2v8.95q0 .825-.588 1.413T19 23.7H5Zm7-9Zm4.175-8.425l1.425 1.4l-6.6 6.6V15.7h1.4l6.625-6.625l1.425 1.4l-7.2 7.225H9v-4.25l7.175-7.175Zm4.275 4.2l-4.275-4.2l2.5-2.5q.6-.6 1.438-.6t1.412.6l1.4 1.425q.575.575.575 1.4T22.925 8l-2.475 2.475Z"/></svg></span> </div>
+    <div class="flex rounded-full profile-img absolute top-12 text-sm mx-5 justify-center items-center opacity-0  text-black font-bold hover:bg-[#9ca3af] hover:opacity-70 hover:text-opacity-100 cursor-pointer transition duration-150"><span class="text-center">{{btnEditFoto}} <svg xmlns="http://www.w3.org/2000/svg" class="text-black text-center flex mx-auto self-center" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 23.7q-.825 0-1.413-.587T3 21.7v-14q0-.825.588-1.413T5 5.7h8.925l-2 2H5v14h14v-6.95l2-2v8.95q0 .825-.588 1.413T19 23.7H5Zm7-9Zm4.175-8.425l1.425 1.4l-6.6 6.6V15.7h1.4l6.625-6.625l1.425 1.4l-7.2 7.225H9v-4.25l7.175-7.175Zm4.275 4.2l-4.275-4.2l2.5-2.5q.6-.6 1.438-.6t1.412.6l1.4 1.425q.575.575.575 1.4T22.925 8l-2.475 2.475Z"/></svg></span> </div>
 
 
     <div class="profile-div flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8 ">
@@ -29,57 +29,61 @@
             <p>
                 <a href="#">{{userParams[3]}}</a>
             </p>
-            <div class=" place-self-start w-full flex flex-row items-center">
-                <h3 class="justify-start">
-                    <b>Descripcion:</b><br> {{userParams[8]}}
-                </h3>
-                    <a  class="cursor-pointer btn-edit relative justify-end ml-12   rounded-md transition duration-150  bg-[#004aad]  px-3.5 py-2.5 text-sm font-semibold text-[#fff] hover:bg-[#2A61AB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" href="./editor.html">
+            <div class=" place-self-start w-full flex flex-row items-center mb-12">
+                <div class="justify-start">
+                    <b>{{labelDescripcion}}</b><br><p *ngIf="!descripcionEditada">{{userParams[8]}}</p><textarea *ngIf="descripcionEditada" class="w-full h-[100px] border-2 border-gray-300 rounded-md" [(ngModel)]="nuevaDescripcion"></textarea>
+                </div>
+                    <a  (click)="editarDescripcion()" *ngIf="!descripcionEditada"  class="cursor-pointer btn-edit relative justify-end ml-12   rounded-md transition duration-150  bg-[#004aad]  px-3.5 py-2.5 text-sm font-semibold text-[#fff] hover:bg-[#2A61AB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         
-                        Editar
+                        {{btnEditarDescripcion}}
+                    </a>
+                    <a  (click)="enviarDescripcion()" *ngIf="descripcionEditada"  class="cursor-pointer btn-edit relative justify-end ml-12   rounded-md transition duration-150  bg-[#1E7EFF]  px-3.5 py-2.5 text-sm font-semibold text-[#fff] hover:bg-[#50A2FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+        
+                        {{btnEditarDescripcion}}
                     </a>
                 
             </div>
             <div class="flex-row place-self-start w-full my-2 flex items-center">
                 <h3 class="w-[80%]">
-                    <b>Horario:</b><br> {{userParams[7]}}
+                    <b>{{labelHorario}}</b><br> {{userParams[7]}}
                 </h3>
 
                     <a (click)="editHorarioBtn()" class=" cursor-pointer btn-edit relative justify-end ml-12 px-3.5 py-2.5 text-sm font-semibold  rounded-md transition duration-150  bg-[#004aad] text-[#fff] hover:bg-[#2A61AB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         
-                        Editar
+                        {{btnEditarHorario}}
                     </a>
             </div>
 
         </div>
         
     </div>
-    <a type="button" href="./contactar.html" class="btn-contact group relative w-[80%] flex justify-center rounded-md  bg-white px-3 py-2 mb-16 text-sm font-semibold transition duration-300 text-[#004aad] hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+    <a type="button" href="./contactar.html" class="btn-contact group relative w-[80%] flex justify-center rounded-md  bg-white px-3 py-2 mb-16 text-sm font-semibold transition duration-300 text-[#004aad] hover:bg-[#d1d5db] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         
-        Contactar con alguien
+        {{btnContactar}}
     </a>
 
     <div class="w-[80%] flex justify-center flex-col my-2 mt-3">
         <div class="py-2 px-3 grid grid-rows-1 grid-cols-3 gap-3 mb-4">
-            <span class="font-bold text-black">Estado:</span>
+            <span class="font-bold text-black">{{labelEstado}}</span>
             <ng-select class="w-full" [items]="estados_perfil" name="estado" id="estado"  bindLabel="name" [clearable]="false" [(ngModel)]="userParams[5]"  (change)="itemSelected(5)" ></ng-select>
 
             <span class=" h-4 w-4 rounded-full mr-10 bg-green-400 ml-2 inline-flex self-center items-center"></span>
         </div>
         <div class="mb-10 grid ml-3 grid-rows-1 grid-cols-1 gap-3">
-            <span class="mr-5  font-bold text-black" >Medio para contactar:</span>
+            <span class="mr-5  font-bold text-black" >{{labelFormaContactar}}</span>
             <ng-select class="w-full" [items]="contactar_perfil" name="contactar" id="contactar" bindLabel="contactar" [clearable]="false" [(ngModel)]="userParams[6]" (change)="itemSelected(6)"></ng-select>
         </div>
-        <a type="button" href="./contactar.html" class=" group relative  flex justify-center rounded-md bg-white px-3 py-2 my-2 text-sm font-semibold transition duration-300 text-[#BB0000] hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+        <a type="button" href="./contactar.html" class=" group relative  flex justify-center rounded-md bg-white px-3 py-2 my-2 text-sm font-semibold transition duration-300 text-[#BB0000] hover:bg-[#d1d5db] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         
-            Cerrar sesion
+            {{btnCerrarSesion}}
         </a>
         
         <a type="button" href="./contactar.html" class=" group relative  flex justify-center rounded-md  bg-[#BB0000] px-3 py-2  text-sm font-semibold transition duration-300 text-[#fff] hover:bg-[#B45050] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
             
-            Borrar cuenta
+            {{btnBorrarCuenta}}
         </a>
     </div>  
 </div>
 
-<app-horario-edit (cerrar)="cerrarModal($event)"  class="h-full w-full fixed inset-0 bg-gray-500 bg-[#f2f2f2] bg-opacity-10 transition-opacity" *ngIf="editHorario"></app-horario-edit>
+<app-horario-edit (cerrar)="cerrarModal($event)" (horarioString)="recibirHorarioString($event)"  class="h-full w-full fixed z-50 inset-0 bg-gray-500 bg-[#f2f2f2] bg-opacity-10 transition-opacity" *ngIf="editHorario"></app-horario-edit>
 

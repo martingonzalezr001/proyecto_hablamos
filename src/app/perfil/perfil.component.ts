@@ -10,6 +10,20 @@ import { AngularFireDatabase, snapshotChanges } from '@angular/fire/compat/datab
 })
 export class PerfilComponent {
 
+  
+  labelDescripcion = 'Descripción:';
+  labelHorario = 'Horario:';
+  labelEstado = 'Estado:';
+  labelFormaContactar = 'Forma de contactar:';
+
+
+  btnContactar = 'Contactar con alguien';
+  btnCerrarSesion = 'Cerrar sesión';
+  btnBorrarCuenta = 'Borrar cuenta';
+  btnEditarHorario = 'Editar';
+  btnEditarDescripcion = 'Editar';
+  btnEditFoto = 'Cambiar foto de perfil';
+
   uid:string;
   private subscription:Subscription;
   constructor(private user:UserServiceService, private af:AngularFireDatabase) {
@@ -113,6 +127,11 @@ export class PerfilComponent {
         this.editHorario = !this.editHorario;
       }
 
+      //Horario string
+      recibirHorarioString(evento:string){
+        console.log("Recibido: ",evento);
+      }
+
       cerrarModal(evento:boolean){
         if(evento){
           this.editHorario = false;
@@ -120,5 +139,20 @@ export class PerfilComponent {
       }
 
       //editar descripcion
+
+      descripcionEditada:boolean = false;
+      nuevaDescripcion:string = "";
+      editarDescripcion(){
+        console.log("Editar descripcion");
+        this.descripcionEditada = true;
+        this.btnEditarDescripcion = 'Enviar';
+
+      }
+
+      enviarDescripcion(){
+        this.userParams[8] = this.nuevaDescripcion;
+        this.descripcionEditada = false;
+        this.btnEditarDescripcion = 'Editar'
+      }
 
 }

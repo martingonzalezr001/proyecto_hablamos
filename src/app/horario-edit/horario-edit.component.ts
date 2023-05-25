@@ -14,8 +14,10 @@ export class HorarioEditComponent {
 
   //Objetos de salida 
   @Output() cerrar = new EventEmitter<boolean>();
+  @Output() horarioString:EventEmitter<string> = new EventEmitter<string>();
 
   cerrarModal(){
+    console.log("Cerrando modal");
     this.cerrar.emit(true);
   }
 
@@ -39,12 +41,6 @@ export class HorarioEditComponent {
 
   borrarHorarioDisponible(i:number){
     this.horariosDisponibles.splice(i, 1);
-
-    if(this.horariosDisponibles.length == 0){
-      this.horarioVacio = true;
-      console.log(this.horarioVacio);
-    }
-
   }
 
   cerrarModal2(evento:boolean){
@@ -54,12 +50,44 @@ export class HorarioEditComponent {
   }
 
   //Recibe horario final
+  horarioFinalNuevo:string;
+  horarioNuevoRecibido:boolean = false;
+  arHorarioNuevo:string[] = [];
+  recibeHorarioNuevo(horarioNuevo:string){
+    this.horarioNuevoRecibido = true;
+    console.log("Horario recibido...");
+    console.log("Horario nuevo ->", horarioNuevo);
 
-  recibeHorarioNuevo(horarioNuevo:string[]){
-    console.log(horarioNuevo)
-    this.horariosDisponibles.push(horarioNuevo);
-    this.horarioVacio = false;
-    this.nuevoHorario = false;
+    this.horarioFinalNuevo = horarioNuevo;
+    console.log(this.horarioFinalNuevo);
+
+
+    this.arHorarioNuevo = horarioNuevo.split("|");
+    this.horariosDisponibles.push(this.arHorarioNuevo);
+
+    this.horarioToString();
+
+    
+  }
+
+
+  //Transforma el horario en string para qur se muestre en el perfil
+  strHorario:string = '';
+  horarioToString(){
+    
+    for(let i = 0; i < this.horariosDisponibles.length; i++){
+      for(let j = 0; j< this.horariosDisponibles[i].length; j++){
+        if(j == 0){
+          this.strHorario += this.horariosDisponibles[i][j] + " ";
+        }else{
+          this.strHorario += this.horariosDisponibles[i][j] + " | ";
+        }
+      }
+    }
+
+    console.log("Horario en string: ",this.strHorario);
+    this.horarioString.emit(this.strHorario);
+    return ;
   }
 
 }

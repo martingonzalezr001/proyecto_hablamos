@@ -56,6 +56,10 @@ export class RegistroComponent {
 
   }
 
+  abrirNotificacion(texto1:string){
+    texto1 = 'registrar';
+  }
+
 
 
   registrar_usuario: FormGroup;

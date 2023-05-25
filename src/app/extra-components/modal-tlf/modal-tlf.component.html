@@ -12,7 +12,7 @@
     <div class="fixed inset-0 bg-[#6B7280] bg-opacity-50 transition-opacity"></div>
   
     <div class="fixed inset-0 z-10 overflow-y-auto bg-[#ffffff] bg-opacity-75">
-      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 bg-opacity-100">
+      <div class="flex min-h-full items-end justify-center p-4 text-center  sm:items-center sm:p-0 bg-opacity-100">
         <!--
           Modal panel, show/hide based on modal state.
   
@@ -23,7 +23,7 @@
             From: "opacity-100 translate-y-0 sm:scale-100"
             To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         -->
-        <div class="relative transform overflow-hidden rounded-lg bg-[#ffffff] px-4 pb-4  text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-5 opacity-100">
+        <div class="relative transform overflow-hidden rounded-lg bg-[#ffffff] px-6 pb-4  text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md sm:p-5 opacity-100">
             <a (click)="cerrarModal()" class="top-2 absolute cursor-pointer right-0 text-gray-300 pr-2 hover:text-black">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41z"/></svg>
             </a>
@@ -42,16 +42,15 @@
           <div class="mt-5 sm:mt-6">
             <div >
                 <form class="flex flex-col" [formGroup]="guardar_tlf" (ngSubmit)="guardarUsuario()" >
-                    <div class="relative mt-2 rounded-md shadow-sm">
+                    <div class="relative mt-2 rounded-md shadow-sm mr-3">
                         <div class="absolute inset-y-0 left-0 flex items-center">
-                            <label for="country" class="sr-only">Country</label>
                             <select id="country" name="country" autocomplete="country" class="h-full rounded-md border-0 bg-transparent py-0 pl-3 pr-7 ring-1 ring-inset ring-gray-300 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
                             <option>US</option>
                             <option>CA</option>
                             <option>EU</option>
                             </select>
                         </div>
-                        <input type="text" name="phone-number" #tlf formControlName="tlf" id="phone-number" class="block w-full rounded-md border-0 py-1.5 pl-16 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="    &nbsp;EJ:+1 (555) 987-6543">
+                        <input type="text" name="phone-number" #tlf formControlName="tlf" id="phone-number" class="block w-full rounded-md border-0 py-1.5 pl-16 ml-5 mr-6 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="    &nbsp;EJ:+1 (555) 987-6543">
                     </div>
                     <div class="flex justify-center my-3">
                         <button class="flex p-3 bg-[#004aad] rounded-md text-[#ffffff] my-3 " type="submit">Aceptar</button>

@@ -9,6 +9,7 @@ export class ElegirHoraComponent {
 
    //Objetos de salida 
    @Output() cerrar = new EventEmitter<boolean>();
+    @Output() enviarHorario:EventEmitter<string> = new EventEmitter<string>();
 
    cerrarModal(){
      this.cerrar.emit(true);
@@ -22,6 +23,8 @@ export class ElegirHoraComponent {
    indiceFinSeleccionado: number = -1;
 
    horarioTotalSeleccionado: string;
+
+   botonSiguiente:boolean = false;
 
 
    horaInicioSeleccionada: string = "";
@@ -42,13 +45,18 @@ export class ElegirHoraComponent {
     this.horaFinSeleccionada = this.horas[this.indiceFinSeleccionado];
 
     console.log("Hora seleccionada fin: ",this.horaFinSeleccionada);
+    if(this.indiceInicioSeleccionado < this.indiceFinSeleccionado){
+      this.botonSiguiente = true;
+    }
     
    }
 
 
    horarioSeleccionado(){
+    
     this.horarioTotalSeleccionado = this.horaInicioSeleccionada + " - " + this.horaFinSeleccionada;
     console.log("Horario seleccionado: ",this.horarioTotalSeleccionado);
+    
     this.enviarHorarioSeleccionado();
     return this.horarioTotalSeleccionado;
 
@@ -63,4 +71,13 @@ export class ElegirHoraComponent {
     }
 
     elegirDia:boolean = false;
+
+    recibeHorarioNuevo(horarioNuevo:string){
+      console.log("Horario recibido...");
+      console.log("Horario nuevo ->", horarioNuevo);
+
+      this.enviarHorario.emit(horarioNuevo);
+    }
+
+  
 }

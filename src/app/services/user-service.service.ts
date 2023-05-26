@@ -31,4 +31,10 @@ export class UserServiceService {
     
     return this.firestore.collection('usuarios', ref => ref.where('uid', '==', uid)).get();
   }
+
+  deleteUsuario(id:string):Promise<any>{
+
+    return this.firestore.collection('usuarios').doc(id).delete();//Borra el usuario con el id que se le pasa por parametro
+
+  }
 }

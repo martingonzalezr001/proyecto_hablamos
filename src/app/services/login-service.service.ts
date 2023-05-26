@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { FirebaseApp } from '@angular/fire/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable({
@@ -11,7 +13,7 @@ import 'firebase/compat/auth';
 })
 export class LoginServiceService {
 
-  constructor(private router:Router, private afAuth:AngularFireAuth) {
+  constructor(private router:Router, private afAuth:AngularFireAuth,private cookies:CookieService) {
     
    }
 
@@ -91,6 +93,9 @@ export class LoginServiceService {
       console.log(uid);
      // this.token = await this.afAuth.currentUser?.getIdToken();
       this.isValidEmail = true;
+
+      this.cookies.set('cookie ' + this.uid, email);
+      console.log("Cookie creada: ", this.cookies.get('cookie ' + this.uid));
       this.router.navigate(['./registro']);
     } catch (error:any) {
       console.log(error.code);
@@ -98,6 +103,8 @@ export class LoginServiceService {
       this.controlarError(error.code);
     }
   }
+
+  
   
   controlarError(code: string) {
     switch (code) {
@@ -116,7 +123,12 @@ export class LoginServiceService {
     }
   }
 
+borrarUsuarioAuth(){
+  firebase.auth().currentUser?.delete().then(()=>{
 
+    console.log("Usuario eliminado correctamente del auth");
+  }).catch(err=>{console.log(err)});
+}
   
   
 

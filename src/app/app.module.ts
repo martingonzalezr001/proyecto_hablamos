@@ -28,6 +28,9 @@ import { ModalTlfComponent } from './extra-components/modal-tlf/modal-tlf.compon
 import { HorarioEditComponent } from './horario-edit/horario-edit.component';
 import { ElegirHoraComponent } from './elegir-hora/elegir-hora.component';
 import { ElegirDiaComponent } from './elegir-dia/elegir-dia.component';
+import { ModalDeleteAccountComponent } from './modal-delete-account/modal-delete-account.component';
+import { CookieService } from 'ngx-cookie-service';
+import { UserServiceService } from './services/user-service.service';
 
 
 const routes: Routes = [
@@ -56,7 +59,8 @@ const routes: Routes = [
     ModalTlfComponent,
     HorarioEditComponent,
     ElegirHoraComponent,
-    ElegirDiaComponent,  ],
+    ElegirDiaComponent,
+    ModalDeleteAccountComponent,  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -69,10 +73,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     NgSelectModule,
     FormsModule,
+    
 
 
   ],
-  providers: [LoginServiceService],
+  providers: [LoginServiceService, UserServiceService,  CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

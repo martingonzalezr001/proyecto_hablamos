@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserServiceService } from '../services/user-service.service';
 import { Subscription } from 'rxjs';
 import { AngularFireDatabase, snapshotChanges } from '@angular/fire/compat/database';
+import { Usuario } from '../usuarios';
 
 @Component({
   selector: 'app-perfil',
@@ -75,28 +76,29 @@ export class PerfilComponent {
   ]
 
     itemSelected(item:number){
-      if(item == 5){
+      if(item === 5){
 
-        switch(this.userParams[5]){
+        switch(this.userParams[item]){
           case "Disponible":
-            this.estados_perfil = [{id:1, name:this.userParams[5]},{id:2, name:"No disponible"},{id:3, name:"Ocupado"}];
+            this.estados_perfil = [{id:1, name:this.userParams[item]},{id:2, name:"No disponible"},{id:3, name:"Ocupado"}];
             break;
           case "No disponible":
-            this.estados_perfil = [{id:2, name:this.userParams[5]},{id:1, name:"Disponible"},{id:3, name:"Ocupado"}];
+            this.estados_perfil = [{id:2, name:this.userParams[item]},{id:1, name:"Disponible"},{id:3, name:"Ocupado"}];
             break;
           case "Ocupado":
-            this.estados_perfil = [{id:3, name:this.userParams[5]},{id:1, name:"Disponible"},{id:2, name:"No disponible"}];
+            this.estados_perfil = [{id:3, name:this.userParams[item]},{id:1, name:"Disponible"},{id:2, name:"No disponible"}];
             break;          
         }
       }
-      else if(item == 6){
+      
+      if(item === 6){
 
-        switch(this.userParams[6]){
+        switch(this.userParams[item]){
           case "Teléfono":
-            this.contactar_perfil = [{id:1, name:this.userParams[6]},{id:2, name:"Correo electronico"}];
+            this.contactar_perfil = [{id:1, name:this.userParams[item]},{id:2, name:"Correo electronico"}];
             break;
-          case "Correo electronico":
-            this.contactar_perfil = [{id:2, name:this.userParams[6]},{id:1, name:"Teléfono"}];
+          case "Correo electronico": 
+            this.contactar_perfil = [{id:2, name:this.userParams[item]},{id:1, name:"Teléfono"}];
             break;
           } 
 
@@ -119,7 +121,12 @@ export class PerfilComponent {
       
       }
       */
-    
+    //modal delete
+    modalDelete:boolean = false;
+
+    deleteAccount(){
+      this.modalDelete = true;
+    }
 
       //editar horario
       editHorario: boolean = false;
@@ -136,6 +143,10 @@ export class PerfilComponent {
         if(evento){
           this.editHorario = false;
         }
+        if(evento){
+          this.modalDelete = false;
+        }
+
       }
 
       //editar descripcion

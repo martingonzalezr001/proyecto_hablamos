@@ -69,8 +69,11 @@
 <div class="  flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8 container-div">
     <div class="w-full max-w-md space-y-8">
       <div>
-        <h2 class="text-center mt-6 text-4xl text-black font-semibold">{{ nuevo_usuario }}</h2>
-        <h3 class="text-center mt-6 text-lg text-black "> {{ nuevo_descripcion }}</h3>
+        <h2 class="text-center mt-6 text-4xl text-black font-semibold" *ngIf="!form_sign_in">{{ nuevo_usuario }}</h2>
+        <h2 class="text-center mt-6 text-4xl text-black font-semibold" *ngIf="form_sign_in">{{ iniciar_sesion }}</h2>
+
+        <h3 class="text-center mt-6 text-lg text-black " *ngIf="!form_sign_in"> {{ nuevo_descripcion }}</h3>
+        
         <!--<p class="mt-2 text-center text-sm text-gray-600">
           No tienes una cuenta?<br>
           <a href="./registro.html" class="font-medium text-[#004aad] hover:text-indigo-500">Registrate!</a>
@@ -124,7 +127,15 @@
         </div>
       </form>
     </div>
+    
   </div>
+  <p class="text-sm text-center mt-4" *ngIf="!form_sign_in">¿Ya tienes una cuenta?<br>
+    <a class="text-center text-[#004aad] hover:text-indigo-500 cursor-pointer hover:underline decoration-2 font-medium" (click)="mostrarOcultarSignIn()">Inicia sesión!</a>
+  </p>
+  <p class="mt-2 text-center text-sm text-gray-600" *ngIf="form_sign_in">
+          No tienes una cuenta?<br>
+          <a class="font-medium text-[#004aad] hover:text-indigo-500 cursor-pointer hover:underline decoration-2 " (click)="mostrarOcultarSignIn()">Registrate!</a>
+  </p>
 
   <div aria-live="assertive" class=" pointer-events-none  inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6">
     <div class="flex w-full  flex-col items-center space-y-4 relative sm:items-end">

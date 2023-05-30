@@ -137,8 +137,8 @@ usuario:any;
 
   //Boton comenzar
   comenzar(){
-    this.registrar_usuario.value.estado = this.estados[1];
-    this.registrar_usuario.value.forma_contactar = this.forma_contactar[1];
+    //this.registrar_usuario.value.estado = this.estados[0];
+    //this.registrar_usuario.value.forma_contactar = this.forma_contactar[0];
     console.log( "Estado: " + this.registrar_usuario.value.estado + ".\nTipo de dato: " + this.registrar_usuario.value.estado.type);
     if(this.registrar_usuario.value.nombre == '' || this.registrar_usuario.value.apellidos == '' || this.registrar_usuario.value.horario_disponibilidad == '' || this.registrar_usuario.value.estado == undefined || this.registrar_usuario.value.forma_contactar == undefined){
       this.camposRellenados = false;
@@ -186,6 +186,11 @@ usuario:any;
         }
       }); 
     }
+  }
+
+  llevarALogin(){
+    const signIn = true;
+    this.router.navigate(['./login'], {state: {signIn}});
   }
 
   sendUid(){

@@ -99,10 +99,38 @@ export class LoginServiceService {
       localStorage.setItem('cookie ' + this.uid , email);
       this.router.navigate(['./registro']);
     } catch (error:any) {
+
       console.log(error.code);
       this.strError = error.code;
       this.controlarError(error.code);
     }
+  }
+
+  async signIn(email: string, password: string) {
+
+    const response = await this.afAuth.signInWithEmailAndPassword(email, password);
+      console.log(response);
+      const uid = response.user?.uid;
+
+      this.uid = uid;
+      this.email = email;
+      this.password = password;
+
+      
+      console.log(uid);
+     // this.token = await this.afAuth.currentUser?.getIdToken();
+      this.isValidEmail = true;
+      
+      this.cookies.set('cookie ' + this.uid, email);
+      console.log("Cookie creada: ", this.cookies.get('cookie ' + this.uid));
+      localStorage.setItem('cookie ' + this.uid , email);
+      this.router.navigate(['./profile']);
+    } catch (error:any) {
+
+      console.log(error.code);
+      this.strError = error.code;
+      //this.controlarError(error.code);
+
   }
 
   
@@ -118,6 +146,23 @@ export class LoginServiceService {
       case "auth/weak-password":
         this.errorPasswordLength = true;
         return this.errorPasswordLength;
+      default:
+        this.isValidEmail = false;
+        return this.isValidEmail;
+    }
+  }
+
+  controlarErrorSignIn(code: string) {
+    switch (code) {
+      case "auth/invalid-email":
+        this.errorInvalidEmail = true;
+        return this.errorInvalidEmail;
+      case "auth/user-not-found":
+        this.errorInvalidEmail = true;
+        return this.errorInvalidEmail;
+      case "auth/wrong-password":
+        this.errorInvalidEmail = true;
+        return this.errorInvalidEmail;
       default:
         this.isValidEmail = false;
         return this.isValidEmail;

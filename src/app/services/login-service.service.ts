@@ -93,9 +93,10 @@ export class LoginServiceService {
       console.log(uid);
      // this.token = await this.afAuth.currentUser?.getIdToken();
       this.isValidEmail = true;
-
+      
       this.cookies.set('cookie ' + this.uid, email);
       console.log("Cookie creada: ", this.cookies.get('cookie ' + this.uid));
+      localStorage.setItem('cookie ' + this.uid , email);
       this.router.navigate(['./registro']);
     } catch (error:any) {
       console.log(error.code);

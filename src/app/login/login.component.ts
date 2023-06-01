@@ -30,7 +30,7 @@ export class LoginComponent {
 form_sign_in:boolean = false;
   
   loginUser:FormGroup;
-  logeado:boolean;
+  logeado:boolean = false;
   intento_log:boolean = false;
 
   mostrarError:boolean = false;
@@ -72,12 +72,16 @@ password:string;
 
   async login(form:FormGroup){
 
-    if(this.email == undefined || this.password == undefined){
+   /*  if(this.email == undefined || this.password == undefined){
       this.logeado = false;
       this.intento_log = true;
-      this.strError = "auth/invalid-email";
-      console.log("Pasa pacaa locoo");
-    }
+      setTimeout(() => {      
+        this.strError = "auth/invalid-email";
+        console.log("Pasa pacaa locoo");
+    }, 1000); */
+
+    
+    
     this.email = form.value.email.toLowerCase();
     this.password = form.value.password;
     const email = this.email;
@@ -90,6 +94,9 @@ password:string;
     }
    this.strError = this.loginService.strError;
    console.log("Error tipo: ",this.strError);
+   this.email = "";
+   this.password = "";
+   console.log(this.logeado);
     if(this.loginService.isValidEmail){
       this.logeado = true;
     }
@@ -97,6 +104,7 @@ password:string;
     console.log(" Error mail invalido: ",this.loginService.errorInvalidEmail);
     if(!this.loginService.errorEmailAlreadyInUse && !this.loginService.errorInvalidEmail && !this.loginService.errorPasswordLength && this.loginService.isValidEmail ){
       this.logeado = true;
+      console.log("LOGEADO: " , this.logeado);
      
     }
     else{

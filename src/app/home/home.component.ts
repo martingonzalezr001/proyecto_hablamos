@@ -12,18 +12,28 @@ export class HomeComponent {
 
 learning:boolean = false;
 
-constructor(@Inject(DOCUMENT) private document:Document){
+constructor(){
+  window.onscroll = () => {
+    this.scroll = window.scrollY;
   
+  }
 }
 
-getImagePath(imageName: string): string {
-  const basePath = this.document.baseURI;
-  return `${basePath}assets/${imageName}`;
-}
+
 mostrarLearning(){
   this.learning = true;
   console.log("asd");
 }
+
+goTop(){
+  window.scroll({ 
+    top: 0, 
+    left: 0, 
+    behavior: 'smooth' 
+  });
+}
+
+scroll:number = 0;
 
 
 

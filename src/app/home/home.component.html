@@ -1,13 +1,12 @@
-<base href="/ruta-base/">
 
 <div class="bg-white">
         
-  <header class="absolute inset-x-0 top-0 z-50 bg-[#C1C1C1]">
+  <header class="absolute inset-x-0 top-0 z-50 ">
       <nav class="flex items-center justify-between p-2 lg:px-8 top-0 right-0 left-0 hover:bg-blue " aria-label="Global">
           <div class="flex lg:flex-1">
             <a href="#" class="-m-1.5 p-1.5">
               <span class="sr-only">Your Company</span>
-              <img class="h-40 w-40 bg-cover" src="assets/hablamosSinFondo.gif" alt="">
+              <img class="h-40 w-40 bg-cover" src="assets/img/hablamosSinFondo.gif" alt="">
             </a>
           </div>
           <div class="flex lg:hidden">
@@ -20,7 +19,7 @@
           </div>
           
           <div class="lg:flex lg:flex-1 lg:justify-end">
-            <a href="./login.html" class="rounded-md text-sm font-semibold leading-6 text-[#fff] px-3.5 py-2.5 transition duration-300  hover:bg-[#EBEBEB] hover:text-black  ">Iniciar sesion <span aria-hidden="true">&rarr;</span></a>
+            <a href="./login" class="rounded-md text-sm font-semibold leading-6 text-[#fff] px-3.5 py-2.5 transition duration-300  hover:bg-[#EBEBEB] hover:text-[#000]  ">Iniciar sesion <span aria-hidden="true">&rarr;</span></a>
           </div>
         </nav>
 
@@ -28,7 +27,7 @@
   <main>
     <!-- Hero section -->
     <div class="relative isolate py-32 xl:py-32 overflow-hidden mb-24 " id="hero">
-      <img src="src/app/img/landing_img-1.jpg" alt="" class="absolute inset-0 -z-10  xl:w-full  xl:h-full h-full w-full object-cover md:object-cover sm:object-cover md:h-full sm:h-full 3xl:object-cover bg-gradient-to-r from-cyan-500 to-blue-500">
+      <img src="assets/img/bgLanding.png" alt="" class="absolute inset-0 -z-10  xl:w-full  xl:h-full h-full w-full object-cover md:object-cover sm:object-cover md:h-full sm:h-full 3xl:object-cover bg-gradient-to-r from-cyan-500 to-blue-500">
 
       <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80 " aria-hidden="true">
         <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] s-translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#3c1ee9] to-[#0c084e] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(100.00% 100.00%, 100% 100.00%, 100.00% 100.00%, 100.00% 1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
@@ -51,14 +50,14 @@
         <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#fff] to-[#004AAD] opacity-0 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
       </div>
     </div>
-      <a class="fixed bottom-0 right-0 rounded-tl rounded-tr text-[#fff] m-4 p-2 bg-[#004AAD] hover:bg-[#2A61AB] transition duration-150 cursor-pointer">
+      <a *ngIf="scroll > 20" (click)="goTop();" class="fixed bottom-0 right-0 rounded-tl rounded-tr text-[#fff] m-4 p-2 bg-[#004AAD] hover:bg-[#2A61AB] transition duration-150 cursor-pointer">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M104.704 685.248a64 64 0 0 0 90.496 0l316.8-316.8l316.8 316.8a64 64 0 0 0 90.496-90.496L557.248 232.704a64 64 0 0 0-90.496 0L104.704 594.752a64 64 0 0 0 0 90.496z"/></svg>
       </a>
     <!-- Learning section -->
     <div *ngIf="learning">
       <div class="border-b border-gray-200 ml-8 pb-5 pt-5 w-[80%] mb-6">
         <h2 class="font-semibold text-xl leading-6 text-gray-900 ml-8 mb-4">Aprende a moverte por la web</h2>
-        <p class="mt-2 max-w-4xl text-sm text-gray-500">Workcation is a property rental website. Etiam ullamcorper massa viverra consequat, consectetur id nulla tempus. Fringilla egestas justo massa purus sagittis malesuada.</p>
+        <p class="mt-2 max-w-4xl text-sm text-[#6b7280]">Workcation is a property rental website. Etiam ullamcorper massa viverra consequat, consectetur id nulla tempus. Fringilla egestas justo massa purus sagittis malesuada.</p>
 
       </div>
       
@@ -84,27 +83,27 @@
           <div class="mt-14 flex justify-center gap-4 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
             <div class="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
               <div class="relative">
-                <img src="../img/landing_img-7.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg ">
+                <img src="assets/img/landing_img-7.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg ">
                 <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
               </div>
             </div>
             <div class="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
               <div class="relative">
-                <img src="../img/landing_img-3.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                <img src="assets/img/landing_img-3.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
                 <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
               </div>
               <div class="relative">
-                <img src="../img/landing_img-4.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                <img src="assets/img/landing_img-4.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
                 <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
               </div>
             </div>
             <div class="w-44 flex-none space-y-8 pt-32 sm:pt-0">
               <div class="relative">
-                <img src="../img/landing_img-5.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                <img src="assets/img/landing_img-5.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
                 <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
               </div>
               <div class="relative">
-                <img src="../img/landing_img-6.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                <img src="assets/img/landing_img-6.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
                 <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
               </div>
             </div>
@@ -190,15 +189,15 @@ pruebas-->
           </div>
           <div class="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents sm:flex-col">
             <div class="w-0 flex-auto lg:ml-auto lg:w-auto lg:flex-none lg:self-end">
-              <img src="../img/landing_img-2B.jpg" alt="" class="aspect-[7/5] w-[37rem] max-w-none rounded-2xl bg-gray-50 object-cover">
+              <img src="assets/img/landing_img-2B.jpg" alt="" class="aspect-[7/5] w-[37rem] max-w-none rounded-2xl bg-gray-50 object-cover">
             </div>
             <div class="contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:w-[37rem] lg:items-start lg:justify-end lg:gap-x-8">
              
               <div class="flex w-96 flex-auto justify-end lg:w-auto lg:flex-none">
-                <img src="../img/landing_img-9.jpg" alt="" class="aspect-[7/5] w-[37rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover">
+                <img src="assets/img/landing_img-9.jpg" alt="" class="aspect-[7/5] w-[37rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover">
               </div>
               <div class="hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none">
-                <img src="../img/landing_img-8.jpg" alt="" class="aspect-[4/3] w-[24rem] max-w-none rounded-2xl bg-gray-50 object-cover">
+                <img src="assets/img/landing_img-8.jpg" alt="" class="aspect-[4/3] w-[24rem] max-w-none rounded-2xl bg-gray-50 object-cover">
               </div>
             </div>
           </div>
@@ -228,12 +227,12 @@ pruebas-->
   
 
   <!-- Footer -->
-  <footer class="landing-footer bg-gray-900 text-[#fff]  font-display" aria-labelledby="footer-heading">
-      <div class=" container-footer grid gap-2 grid-cols-2 grid-rows-1 pt-4  text-md">
+  <footer class="landing-footer bg-[#111827] text-[#fff]  font-display" aria-labelledby="footer-heading">
+      <div class=" mx-5 container-footer grid gap-2 grid-cols-2 grid-rows-1 pt-4  text-md">
         <div class=" container-footer grid gap-1 grid-cols-1 grid-rows-3 pt-5" >
-          <div class="px-2 py-2">Correo electrónico: <span class="text-cyan-500 hover:underline decoration-solid transition duration-150 hover:ease-in">martin.gonzalez@alumno.ucjc.edu</span></div>
+          <div class="px-2 py-2">Correo electrónico: <span class="text-[#06b6d4] hover:underline decoration-solid transition duration-150 hover:ease-in">martin.gonzalez@alumno.ucjc.edu</span></div>
           <div class="px-2 py-2">Dirección: C:/ Almagro, 5, Madrid.</div>
-          <div class="px-2 py-3"> <img src="../../img/logoCEP.png" class="w-32 h-8"></div>
+          <div class="px-2 py-3"> <img src="../assets/img/logoCEP.png" class="w-32 h-8"></div>
 
 
 
@@ -247,21 +246,21 @@ pruebas-->
               </div>
               
               <div class="px-2 py-2 flex space-x-6 md:order-2 pl-80 flex-wrap self-center text-center justify-center">
-                <a href="#" class="text-gray-500 hover:text-gray-400">
+                <a href="#" class="text-[#6b7280] hover:text-[#9ca3af]">
                   <span class="sr-only">Email</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                     <path fill="currentColor" d="M32 6v20c0 1.135-.865 2-2 2h-2V9.849l-12 8.62l-12-8.62V28H2c-1.135 0-2-.865-2-2V6c0-.568.214-1.068.573-1.422A1.973 1.973 0 0 1 2 4h.667L16 13.667L29.333 4H30c.568 0 1.068.214 1.427.578c.359.354.573.854.573 1.422z"/>
                   </svg>
                 </a> 
         
-                <a href="#" class="text-gray-500 hover:text-gray-400">
+                <a href="#" class="text-[#6b7280] hover:text-[#9ca3af]">
                   <span class="sr-only">GitHub</span>
                   <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
                   </svg>
                 </a>
         
-                <a href="https://gitlab.com/martin_okb/pfc_front.git" class="text-gray-500 hover:text-gray-400">
+                <a href="https://gitlab.com/martin_okb/pfc_front.git" class="text-[#6b7280] hover:text-[#9ca3af]">
                   <span class="sr-only">GitLab</span>
                   <svg xmlns="http://www.w3.org/2000/svg"  width="32" height="32" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="m14.329 6.922l-.02-.053l-1.239-3.232l-.668 2.044l-.337 1.035H3.936L3.598 5.68l-.667-2.043l-1.24 3.237l-.005.01l-.004.01l-.018.045a2.543 2.543 0 0 0 .848 2.93l.005.004l.01.008l.01.008l.009.006l3.302 2.474l.004.004l1.644 1.242l.5.379l.501-.379l1.644-1.242l.006-.004l3.325-2.489l.007-.005l.009-.007a2.543 2.543 0 0 0 .844-2.939l-.003-.008Zm.053 4.152l-3.337 2.497l-1.643 1.242l-.999.755a.675.675 0 0 1-.813 0l-.999-.755l-1.643-1.242l-3.313-2.483l-.018-.014l-.008-.006A4.043 4.043 0 0 1 .267 6.395l.023-.057l1.9-4.963l.013-.033l.081-.212l.023-.06l.158-.413A.565.565 0 0 1 2.941.3a.576.576 0 0 1 .613.415l.134.41l.005.017l.078.239l.011.033l1.242 3.802h5.953l1.241-3.802l.011-.033l.078-.24l.006-.016l.133-.41a.575.575 0 0 1 1.088-.058l.157.409l.025.064l.08.211l.013.033l1.903 4.963l.022.058a4.043 4.043 0 0 1-1.343 4.671l-.01.008Z" clip-rule="evenodd"/>
                   </svg>

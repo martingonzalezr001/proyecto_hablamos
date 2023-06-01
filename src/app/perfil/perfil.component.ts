@@ -218,7 +218,7 @@ export class PerfilComponent {
       editarDescripcion(){
         console.log("Editar descripcion");
         this.descripcionEditada = true;
-        this.btnEditarDescripcion = 'Enviar';
+        this.btnEditarDescripcion = 'Guardar';
 
       }
 

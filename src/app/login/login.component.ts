@@ -24,10 +24,13 @@ export class LoginComponent {
       email: ['', Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
       password: ['', Validators.required],
     });
+
    }
 
-   
-form_sign_in:boolean = false;
+
+
+  signIn:string="";   
+  form_sign_in:boolean = false;
   
   loginUser:FormGroup;
   logeado:boolean = false;
@@ -51,14 +54,9 @@ password:string;
    }
 
   ngOnInit(): void {
-    const navigation = this.router.getCurrentNavigation();
-    
-    if(navigation?.extras.state){
-      console.log("AOLA");
-      this.form_sign_in = navigation?.extras.state['signIn'];
+    this.route.params.subscribe(params =>{ this.signIn = params['signIn'];});
+    console.log("Sign in: ",this.signIn);
 
-      console.log("Form sign in: ",this.form_sign_in);
-    }
   }
 
   mirar(){

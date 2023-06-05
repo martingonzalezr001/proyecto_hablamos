@@ -4,6 +4,7 @@ import { LoginServiceService } from '../services/login-service.service';
 import { UserServiceService } from '../services/user-service.service';
 import { Usuario } from '../usuarios';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-registro',
@@ -29,7 +30,7 @@ export class RegistroComponent {
   comenzar_btn = 'Comenzar';
   error_campos = 'Faltan campos por rellenar';
   
-  
+  strUid:string;
   
   
   ngOnInit(): void {
@@ -60,7 +61,7 @@ export class RegistroComponent {
     texto1 = 'registrar';
   }
 
-
+  registro:string = 'registro';
 
   registrar_usuario: FormGroup;
   succes_login:boolean;
@@ -174,6 +175,9 @@ usuario:any;
       this.tlfModal = true;
     }else{
       this.newUser.guardarUsuario(this.usuario).then(() =>{
+        this.strUid = this.usuario.uid;
+        this.localStorage.setItem('uid',this.strUid);
+
         console.log(this.usuario);
         console.log("Usuario guardado: " + this.usuario.uid);
         this.sendUid();
@@ -227,7 +231,7 @@ itemSelected(item:any){
 
  
  
-  constructor(private fb: FormBuilder, private loginService:LoginServiceService , private newUser:UserServiceService, private router:Router) {
+  constructor(private fb: FormBuilder, private loginService:LoginServiceService , private newUser:UserServiceService, private router:Router, private localStorage:LocalStorageService) {
     this.registrar_usuario = this.fb.group({
       nombre: ['',Validators.required],
       apellidos: ['',Validators.required],
@@ -276,7 +280,7 @@ itemSelected(item:any){
       this.error_required_apellidos = false;
     }
     //Contraseña
-    if(this.registrar_usuario.get('confirmar_contrasenia')?.hasError('required') && this.registrar_usuario.get('confirmar_contrasenia')?.touched && this.registrar_usuario.get('confirmar_contrasenia')){
+    if(this.registrar_usuario.get('confirmar_contrasenia')?.hasError('required') && this.registrar_usuario.get('confirmar_contrasenia')?.touched && this.registrar_usuario.get('confirmar_contrasenia') || this.registrar_usuario.get('confirmar_contrasenia')?.value != this.loginService.password &&  this.registrar_usuario.get('confirmar_contrasenia')?.touched && this.registrar_usuario.get('confirmar_contrasenia')){
       this.confirmar_password_ph = '';
       console.log("Contraseña requerida, tiene que ser igual que " + this.loginService.password);
       this.error_same_password = true;

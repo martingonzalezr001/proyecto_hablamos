@@ -19,6 +19,7 @@ export class LoginServiceService {
 
   token:string | undefined;
 
+
   uid:string | undefined;
   email:string;
   password:string;
@@ -94,7 +95,7 @@ export class LoginServiceService {
      // this.token = await this.afAuth.currentUser?.getIdToken();
       this.isValidEmail = true;
       
-      this.cookies.set('cookie ' + this.uid, email);
+      this.cookies.set('cookie ' + uid, email  );
       console.log("Cookie creada: ", this.cookies.get('cookie ' + this.uid));
       localStorage.setItem('cookie ' + this.uid , email);
       this.router.navigate(['./registro']);

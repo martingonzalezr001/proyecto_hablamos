@@ -36,6 +36,7 @@ import { UserServiceService } from './services/user-service.service';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent},
+  { path: 'login/:signin', component: LoginComponent},
   { path: 'registro', component: RegistroComponent},
   { path: 'perfil', component: PerfilComponent},
   { path: 'conectar', component: ConectarComponent},

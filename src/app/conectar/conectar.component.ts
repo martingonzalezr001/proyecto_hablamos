@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./conectar.component.css']
 })
 export class ConectarComponent {
+tlfModal:boolean = false;
 
+  abrirModal(){
+    this.tlfModal = true;
+  }
+
+  cerrarModal(evento:boolean){
+    if(evento){
+      this.tlfModal = false;
+    }
+
+  }
 }

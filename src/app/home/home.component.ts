@@ -25,6 +25,8 @@ mostrarLearning(){
   console.log("asd");
 }
 
+
+
 goTop(){
   window.scroll({ 
     top: 0, 

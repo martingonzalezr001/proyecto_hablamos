@@ -36,10 +36,10 @@
         <div class=" bg-gradient-to-r from-[#06b6d4] to-[#2563eb] xl:py-9 lg:py-12">
           <div class="mx-auto max-w-7xl lg:pt-20 px-6 lg:px-8">
             <div class="mx-auto max-w-2xl text-center">
-              <h2 class="text-4xl font-bold tracking-tight text-white sm:text-4xl lg:text-4xl">Ayuda a quien lo necesite!</h2>
-              <p class="mt-6 text-lg leading-8 text-white text-black">Conéctate con personas amigables y conversa con alguien cuando lo necesites. Siempre puede haber alguien dispuesto a conversar.</p>
+              <h2 class="text-4xl font-bold tracking-tight text-[#fff] sm:text-4xl lg:text-4xl">Ayuda a quien lo necesite!</h2>
+              <p class="mt-6 text-lg leading-8 text-[#fff] text-black">Conéctate con personas amigables y conversa con alguien cuando lo necesites. Siempre puede haber alguien dispuesto a conversar.</p>
               <div class="mt-10 flex items-center justify-center gap-x-6">
-                <a href="./extra-components/modal-tlf.html" class="rounded-md bg-[#fff]  transition duration-150 px-3.5 py-2.5 text-sm font-semibold text-[#004aad] shadow-sm hover:bg-[#2A61AB] hover:text-[#fff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Ayuda a dar conversación</a>
+                <a (click)="abrirModal();" class="rounded-md bg-[#fff]  transition duration-150 px-3.5 py-2.5 text-sm font-semibold text-[#004aad] cursor-pointer shadow-sm hover:bg-[#2A61AB] hover:text-[#fff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Ayuda a dar conversación</a>
               </div>
             </div>
             
@@ -50,3 +50,4 @@
         </div>
       </div>
 </div>
+<app-modal-tlf (cerrar)="cerrarModal($event)" *ngIf="tlfModal"  class="h-full w-full fixed inset-0 bg-gray-500 bg-[#f2f2f2] bg-opacity-10 transition-opacity"></app-modal-tlf>

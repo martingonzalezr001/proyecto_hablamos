@@ -26,7 +26,9 @@ export class PerfilComponent {
   btnEditarDescripcion = 'Editar';
   btnEditFoto = 'Cambiar foto de perfil';
 
+  user_id:any
   uid:string;
+  strUid:string;
   private subscription:Subscription;
   constructor(private user:UserServiceService, private af:AngularFireDatabase, private localStorage:LocalStorageService) {
     this.subscription = this.user.dataUser$.subscribe(uid => {
@@ -48,10 +50,17 @@ export class PerfilComponent {
   userParams:string[] = [];
   localData:any[] = [];
   ngOnInit(): void {
-
-    console.log("UID enviado: ",this.uid);
+    //this.strUid = this.uid.toString();
+    const stringUid = this.localStorage.getItem('uid');
+    console.log("UID recuperado: ",stringUid);
+    console.log(" tipo: ",typeof stringUid);
+    if(stringUid && typeof stringUid === 'string'){
+      console.log(":::::::");
+     
+    }
     this.af.list('/usuarios').valueChanges().subscribe(console.log);
-    console.log(this.user.getInfoUser(this.uid).subscribe(snapshotChanges => {
+    console.log("-----> ");
+    console.log(this.user.getInfoUser(stringUid).subscribe(snapshotChanges => {
       this.userParams = [];
       this.localData = {} as any;
       snapshotChanges.forEach(doc => {
@@ -71,47 +80,28 @@ export class PerfilComponent {
         this.userParams.push(id,nombre,apellidos,correo,telefono,estado,forma_contactar,horario_disponibilidad,descripcion);
 
         console.log("userParams: ",this.userParams);
+        
+        
+        console.log('UserParams: ',this.userParams);
 
-
-        for(let i = 0; i < this.userParams.length; i++){
-
-          //localStorage.setItem('userInfo',this.userParams[i]);  //Guarda el json en el localStorage con la clave userInfo
-
-          localStorage.setItem('userInfo' + i,this.userParams[i]);//Convierte elementos del array a json
-          const key = localStorage.key(i);
-          //const dataJson = JSON.stringify(
-
-          if(key){
-            const item = localStorage.getItem(key);
-            if(item){
-              this.localData.push(JSON.parse(item));
-            }
-          }
-          //console.log(this.localData);
-          //this.localData = Object.keys(localStorage);
-
-
-          //console.log(dataJson);
-
-        }
-
+        
+      
                   console.log("LocalData: " + this.localData);
                   
-                  this.userParams = this.localData
         
     
-        //console.log("Datos guardados en localStorage: ",localStorage.getItem('userInfo')); 
-       // const datosRecuperadosJson = localStorage.getItem('userInfo');  //Recupera la info del localStorage
-       // let datosRecuperados;
+        console.log("Datos guardados en localStorage: ",localStorage.getItem('userInfo')); 
+        const datosRecuperadosJson = localStorage.getItem('userInfo');  //Recupera la info del localStorage
+        let datosRecuperados;
     
-       /*  if(datosRecuperadosJson != null){
+        if(datosRecuperadosJson != null){
           datosRecuperados = JSON.parse(datosRecuperadosJson); 
           console.log("Datos recuperados del localStorage: ",datosRecuperados);
           this.localData.push(datosRecuperados);
         }else{
           console.log("No hay datos en el localStorage");
           datosRecuperados = [];
-        } */
+        }
       });
     }));
     
@@ -195,6 +185,7 @@ export class PerfilComponent {
       //Horario string
       recibirHorarioString(evento:string){
         console.log("Recibido: ",evento);
+        this.userParams[7] = evento;
       }
 
       mostrarDatos(){

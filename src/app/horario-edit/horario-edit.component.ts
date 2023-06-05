@@ -74,7 +74,7 @@ export class HorarioEditComponent {
   //Transforma el horario en string para qur se muestre en el perfil
   strHorario:string = '';
   horarioToString(){
-    
+    this.strHorario = '';
     for(let i = 0; i < this.horariosDisponibles.length; i++){
       for(let j = 0; j< this.horariosDisponibles[i].length; j++){
         if(j == 0){
@@ -84,6 +84,9 @@ export class HorarioEditComponent {
         }
       }
     }
+
+
+
 
     console.log("Horario en string: ",this.strHorario);
     this.horarioString.emit(this.strHorario);

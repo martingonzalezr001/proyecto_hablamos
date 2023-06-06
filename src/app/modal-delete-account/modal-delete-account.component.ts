@@ -13,6 +13,8 @@ export class ModalDeleteAccountComponent {
 
 //Objetos de entrada
 @Input() uid:string;
+@Input() delete:boolean
+@Input() signOut:boolean
 
   //Objetos de salida 
 @Output() cerrar = new EventEmitter<boolean>();
@@ -28,6 +30,7 @@ ngOnInit(): void {
 
   cerrarModal() {
     this.cerrar.emit(true);
+    console.log("aaa");
   }
   eliminarCuenta() {
     console.log("Eliminando cuenta...");
@@ -39,6 +42,11 @@ ngOnInit(): void {
 
     });
 
+  }
+
+
+  cerrarSesion(){
+    this.loginService.cerrarSesionAuth();
   }
 
 }

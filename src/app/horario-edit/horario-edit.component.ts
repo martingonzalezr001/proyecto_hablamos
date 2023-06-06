@@ -21,10 +21,7 @@ export class HorarioEditComponent {
     this.cerrar.emit(true);
   }
 
-  horariosDisponibles:any[][] = [['Lunes y Martes','8:00 - 12:00'],
-                          ['Miercoles y Jueves','8:00 - 12:00'],
-                          ['Viernes y Sabado','12:00 - 18:00']
-                        ];
+  horariosDisponibles:any[][] = [];
 
   horarioVacio:boolean = false;
   

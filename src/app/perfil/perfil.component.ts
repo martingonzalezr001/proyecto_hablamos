@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { AngularFireDatabase, snapshotChanges } from '@angular/fire/compat/database';
 import { Usuario } from '../usuarios';
 import { LocalStorageService } from '../services/local-storage.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-perfil',
@@ -26,11 +27,16 @@ export class PerfilComponent {
   btnEditarDescripcion = 'Editar';
   btnEditFoto = 'Cambiar foto de perfil';
 
+//Variables Estados
+disponible:boolean = false;
+ocupado:boolean = false;
+no_disponible:boolean = false; 
+
   user_id:any
   uid:string;
   strUid:string;
   private subscription:Subscription;
-  constructor(private user:UserServiceService, private af:AngularFireDatabase, private localStorage:LocalStorageService) {
+  constructor(private user:UserServiceService, private af:AngularFireDatabase, private localStorage:LocalStorageService, private dataService:DataService) {
     this.subscription = this.user.dataUser$.subscribe(uid => {
       this.uid = uid;
     });
@@ -47,7 +53,7 @@ export class PerfilComponent {
     }
   }
   userParam:string;
-  userParams:string[] = [];
+  userParams:string[] | any = [];
   localData:any[] = [];
   ngOnInit(): void {
     //this.strUid = this.uid.toString();
@@ -102,9 +108,35 @@ export class PerfilComponent {
           console.log("No hay datos en el localStorage");
           datosRecuperados = [];
         }
+       
+       
+       
       });
     }));
-    
+
+
+    setTimeout(() =>{
+      if(this.userParams != undefined){
+
+      
+        console.log("Parametros de usuario: " + this.userParams);
+        console.log("Estado: ", this.userParams[5]);
+          if(this.userParams[5] == "Disponible"){
+            this.itemSelected(5, "Disponible");
+          }else if(this.userParams[5] == "No disponible"){
+            this.itemSelected(5, "No disponible");
+            console.log('____________________________________________________________');
+          }else if(this.userParams[5] == "Ocupado"){
+            this.itemSelected(5, "Ocupado");
+
+          }
+
+      }else{
+        console.log("no llega");
+      }
+    }, 2000
+        );
+      
    
   }
 
@@ -118,20 +150,50 @@ export class PerfilComponent {
     {id:1, name:"Teléfono"},
     {id:2, name:"Correo electronico"},
   ]
-
-    itemSelected(item:number){
+  name:string;
+  subItem:number
+    itemSelected(item:number, name:string){
       if(item === 5){
-
-        switch(this.userParams[item]){
+      //  console.log("Item: ",this.estados_perfil.values);
+      //  console.log("Selected:", this.userParams[5].name );
+      if(name === undefined){
+        name = this.userParams[5].name;
+      
+      }
+        switch(name){
           case "Disponible":
-            this.estados_perfil = [{id:1, name:this.userParams[item]},{id:2, name:"No disponible"},{id:3, name:"Ocupado"}];
+            this.estados_perfil = [{id:2, name:"No disponible"},{id:3, name:"Ocupado"}];
+
+
+            this.disponible = true;
+            this.no_disponible = false;
+            this.ocupado = false;
+            console.log(this.disponible," ", this.no_disponible, " ", this.ocupado);
+            this.userParams[5] = "Disponible";
+            console.log(this.userParams);
+            this.dataService.editarData(this.uid, this.userParams);
+
             break;
           case "No disponible":
-            this.estados_perfil = [{id:2, name:this.userParams[item]},{id:1, name:"Disponible"},{id:3, name:"Ocupado"}];
+            this.estados_perfil = [{id:1, name:"Disponible"},{id:3, name:"Ocupado"}];
+            this.no_disponible = true;
+            this.disponible = false;
+            this.ocupado = false;
+            console.log(this.disponible," ", this.no_disponible, " ", this.ocupado);
+            this.userParams[5] = "No disponible";
+            console.log(this.userParams);
+            
             break;
           case "Ocupado":
-            this.estados_perfil = [{id:3, name:this.userParams[item]},{id:1, name:"Disponible"},{id:2, name:"No disponible"}];
-            break;          
+            this.estados_perfil = [{id:1, name:"Disponible"},{id:2, name:"No disponible"}];
+            this.ocupado = true;
+            this.disponible = false;
+            this.no_disponible = false;
+            console.log(this.disponible," ", this.no_disponible, " ", this.ocupado);
+            this.userParams[5] = "Ocupado";
+            console.log(this.userParams)
+
+            break;     
         }
       }
       
@@ -140,9 +202,11 @@ export class PerfilComponent {
         switch(this.userParams[item]){
           case "Teléfono":
             this.contactar_perfil = [{id:1, name:this.userParams[item]},{id:2, name:"Correo electronico"}];
+            this.userParams[6] = "Telefono";
             break;
           case "Correo electronico": 
             this.contactar_perfil = [{id:2, name:this.userParams[item]},{id:1, name:"Teléfono"}];
+            this.userParams[6] = "Correo electronico"
             break;
           } 
 
@@ -171,9 +235,18 @@ export class PerfilComponent {
       */
     //modal delete
     modalDelete:boolean = false;
+    modalSignOut:boolean = false;
 
     deleteAccount(){
       this.modalDelete = true;
+      this.modalSignOut = false;
+
+    }
+
+    signOutAccount(){
+      this.modalSignOut = true;
+      this.modalDelete = false;
+
     }
 
       //editar horario
@@ -186,6 +259,7 @@ export class PerfilComponent {
       recibirHorarioString(evento:string){
         console.log("Recibido: ",evento);
         this.userParams[7] = evento;
+        console.log(this.userParams);
       }
 
       mostrarDatos(){
@@ -198,6 +272,9 @@ export class PerfilComponent {
         }
         if(evento){
           this.modalDelete = false;
+        }
+        if(evento){
+          this.modalSignOut = false;
         }
 
       }
@@ -215,6 +292,7 @@ export class PerfilComponent {
 
       enviarDescripcion(){
         this.userParams[8] = this.nuevaDescripcion;
+        console.log(this.userParams);
         this.descripcionEditada = false;
         this.btnEditarDescripcion = 'Editar'
       }

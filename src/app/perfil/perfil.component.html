@@ -14,7 +14,7 @@
 </header>
 <div class="flex relative min-h-full flex-col  items-center justify-center px-4 py-12 sm:px-6 lg:px-8 container-div">
     
-    <img class="inline-block  rounded-full profile-img relative" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
+    <img class="inline-block  rounded-full profile-img relative" src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Windows_10_Default_Profile_Picture.svg" alt="">
     <div class="flex rounded-full profile-img absolute top-12 text-sm mx-5 justify-center items-center opacity-0  text-black font-bold hover:bg-[#9ca3af] hover:opacity-70 hover:text-opacity-100 cursor-pointer transition duration-150"><span class="text-center">{{btnEditFoto}} <svg xmlns="http://www.w3.org/2000/svg" class="text-black text-center flex mx-auto self-center" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 23.7q-.825 0-1.413-.587T3 21.7v-14q0-.825.588-1.413T5 5.7h8.925l-2 2H5v14h14v-6.95l2-2v8.95q0 .825-.588 1.413T19 23.7H5Zm7-9Zm4.175-8.425l1.425 1.4l-6.6 6.6V15.7h1.4l6.625-6.625l1.425 1.4l-7.2 7.225H9v-4.25l7.175-7.175Zm4.275 4.2l-4.275-4.2l2.5-2.5q.6-.6 1.438-.6t1.412.6l1.4 1.425q.575.575.575 1.4T22.925 8l-2.475 2.475Z"/></svg></span> </div>
 
 
@@ -65,15 +65,18 @@
     <div class="w-[80%] flex justify-center flex-col my-2 mt-3">
         <div class="py-2 px-3 grid grid-rows-1 grid-cols-3 gap-3 mb-4">
             <span class="font-bold text-black">{{labelEstado}}</span>
-            <ng-select class="w-full" [items]="estados_perfil" name="estado" id="estado"  bindLabel="name" [clearable]="false" [(ngModel)]="userParams[5]"  (change)="itemSelected(5)" ></ng-select>
+            <ng-select class="w-full" [items]="estados_perfil" name="estado" id="estado"  bindLabel="name" [clearable]="false" [(ngModel)]="userParams[5]"  (change)="itemSelected(5,name)" ></ng-select>
 
-            <span class=" h-4 w-4 rounded-full mr-10 bg-green-400 ml-2 inline-flex self-center items-center"></span>
+            <span *ngIf="disponible" class=" h-4 w-4 rounded-full mr-10 bg-[#4ade80] ml-2 inline-flex self-center items-center"></span>
+            <span *ngIf="no_disponible" class=" h-4 w-4 rounded-full mr-10 bg-[#f87171] ml-2 inline-flex self-center items-center"></span>
+            <span *ngIf="ocupado" class=" h-4 w-4 rounded-full mr-10 bg-[#fbbf24] ml-2 inline-flex self-center items-center"></span>
+
         </div>
         <div class="mb-10 grid ml-3 grid-rows-1 grid-cols-1 gap-3">
             <span class="mr-5  font-bold text-black" >{{labelFormaContactar}}</span>
-            <ng-select class="w-full" [items]="contactar_perfil" name="forma_contactar" id="forma_contactar" bindLabel="name" [clearable]="false" [(ngModel)]="userParams[6]" (change)="itemSelected(6)"></ng-select>
+            <ng-select class="w-full" [items]="contactar_perfil" name="forma_contactar" id="forma_contactar" bindLabel="name" [clearable]="false" [(ngModel)]="userParams[6]" (change)="itemSelected(6,name)"></ng-select>
         </div>
-        <a type="button" class=" group relative  flex justify-center cursor-pointer rounded-md bg-white px-3 py-2 my-2 text-sm font-semibold transition duration-300 text-[#BB0000] hover:bg-[#d1d5db] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+        <a type="button" (click)="signOutAccount()" class=" group relative  flex justify-center cursor-pointer rounded-md bg-white px-3 py-2 my-2 text-sm font-semibold transition duration-300 text-[#BB0000] hover:bg-[#d1d5db] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         
             {{btnCerrarSesion}}
         </a>
@@ -86,4 +89,4 @@
 </div>
 
 <app-horario-edit (cerrar)="cerrarModal($event)" (horarioString)="recibirHorarioString($event)"  class="h-full w-full fixed z-50 inset-0 bg-gray-500 bg-[#f2f2f2] bg-opacity-10 transition-opacity" *ngIf="editHorario"></app-horario-edit>
-<app-modal-delete-account (cerrar)="cerrarModal($event)" [uid]="userParams[0]" *ngIf="modalDelete"></app-modal-delete-account>
+<app-modal-delete-account (cerrar)="cerrarModal($event)" [delete]="modalDelete" [signOut]="modalSignOut" [uid]="userParams[0]" *ngIf="modalDelete || modalSignOut"></app-modal-delete-account>

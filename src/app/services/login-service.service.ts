@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
 import { FirebaseApp } from '@angular/fire/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,7 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LoginServiceService {
 
-  constructor(private router:Router, private afAuth:AngularFireAuth,private cookies:CookieService) {
+  constructor(@Inject(DOCUMENT) private document:Document, private router:Router, private afAuth:AngularFireAuth,private cookies:CookieService) {
     
    }
 
@@ -23,6 +24,8 @@ export class LoginServiceService {
   uid:string | undefined;
   email:string;
   password:string;
+
+  nombreCookie:string;
 
 
   //Errors login
@@ -175,6 +178,20 @@ borrarUsuarioAuth(){
 
     console.log("Usuario eliminado correctamente del auth");
   }).catch(err=>{console.log(err)});
+}
+
+cerrarSesionAuth(){
+  return this.afAuth.signOut().then(()=>{
+    localStorage.removeItem('uid');
+    
+    this.nombreCookie = 'cookie ' + this.uid;
+
+    console.log("Nombre de la cookie: " + this.nombreCookie );
+    this.cookies.deleteAll();
+    this.router.navigate(['./']);
+  }
+
+  );
 }
   
   

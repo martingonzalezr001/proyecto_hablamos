@@ -174,6 +174,7 @@ usuario:any;
     if(this.telefono_check){
       this.tlfModal = true;
     }else{
+      console.log("Usuario a guardar: " +  this.usuario);
       this.newUser.guardarUsuario(this.usuario).then(() =>{
         this.strUid = this.usuario.uid;
         this.localStorage.setItem('uid',this.strUid);
@@ -221,7 +222,7 @@ gadgets = [
 
 itemSelected(item:any){
   console.log(item);
-  if(item.id < 3){
+  if(item.id <= 3){
     this.estado = item.name;
   }else{
     this.forma_contactar = item.name;
@@ -320,5 +321,8 @@ itemSelected(item:any){
   }
 
 
-  
+  myFunction(){
+
+    alert("De momento no funciona");
+  }
 }

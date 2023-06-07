@@ -166,6 +166,10 @@ usuario:any;
      
     };
 
+    if(this.usuario.telefono == undefined || this.usuario.telefono == null || this.usuario.telefono == ''){
+      this.usuario.telefono = 'TLF No disponible';
+    }
+
     if(this.tlf != null){
       this.usuario.telefono = this.tlf;
     }

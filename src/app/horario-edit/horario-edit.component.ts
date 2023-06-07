@@ -29,6 +29,8 @@ export class HorarioEditComponent {
   nuevoHorario:boolean = false;
 
 
+  //Modal succes
+  horario_guardado:string = 'Horario guardado';
 
   addHorarioDisponible(){
     this.nuevoHorario = true;

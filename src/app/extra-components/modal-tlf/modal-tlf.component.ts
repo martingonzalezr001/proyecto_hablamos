@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { Usuario } from 'src/app/usuarios';
 
@@ -11,6 +12,8 @@ import { Usuario } from 'src/app/usuarios';
 })
 export class ModalTlfComponent {
 
+  strUid:string;
+
   //Objetos de salida 
   @Output() cerrar = new EventEmitter<boolean>();
   
@@ -18,7 +21,7 @@ export class ModalTlfComponent {
   @Input() usuario:Usuario;
 
   guardar_tlf:FormGroup;
-  constructor(private fb:FormBuilder, private newUser:UserServiceService, private router:Router) {
+  constructor(private fb:FormBuilder, private newUser:UserServiceService, private router:Router, private localStorage:LocalStorageService) {
     this.guardar_tlf = this.fb.group({
       tlf:[''],
     })
@@ -33,6 +36,8 @@ export class ModalTlfComponent {
       console.log("Usuario guardado");
       this.sendUid();
       this.router.navigate(['./perfil']);
+      this.strUid = this.usuario.uid;
+        this.localStorage.setItem('uid',this.strUid);
 
     }).catch(error =>{
       console.log(error);
@@ -49,6 +54,7 @@ export class ModalTlfComponent {
     const uid = this.usuario.uid;
     console.log(" sin mandar: ",uid);
     this.newUser.setUsuario(uid);
+    console.log("El usuario con el uid: ",uid," ha sido enviado");
     
     
    }

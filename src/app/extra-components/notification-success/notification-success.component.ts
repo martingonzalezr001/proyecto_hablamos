@@ -22,7 +22,11 @@ export class NotificationSuccessComponent {
 
       this.exito = '¡Correo enviado!';
       this.exito_descripcion = 'Se ha enviado un correo a tu cuenta de correo electrónico con un enlace para recuperar tu contraseña';
-    }else{
+    }else if(this.tipo == 'horario_guardado'){
+      this.exito = '¡Horario guardado!';
+      this.exito_descripcion = 'Ya se muestra correctamente el horario de disponibilidad';
+    }
+    else{
       this.exito = '';
       this.exito_descripcion = '';
 

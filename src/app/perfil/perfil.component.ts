@@ -51,10 +51,20 @@ no_disponible:boolean = false;
         this.userParams.push(this.userParam);      }
       
     }
+  
+  
   }
+
+
+  //Info user
   userParam:string;
   userParams:string[] | any = [];
   localData:any[] = [];
+
+  newUserParams:string[] | any = [];
+
+
+
   ngOnInit(): void {
     //this.strUid = this.uid.toString();
     const stringUid = this.localStorage.getItem('uid');
@@ -84,11 +94,10 @@ no_disponible:boolean = false;
         const descripcion = data.descripcion;
 
         this.userParams.push(id,nombre,apellidos,correo,telefono,estado,forma_contactar,horario_disponibilidad,descripcion);
-
+        
         console.log("userParams: ",this.userParams);
         
         
-        console.log('UserParams: ',this.userParams);
 
         
       
@@ -125,7 +134,7 @@ no_disponible:boolean = false;
             this.itemSelected(5, "Disponible");
           }else if(this.userParams[5] == "No disponible"){
             this.itemSelected(5, "No disponible");
-            console.log('____________________________________________________________');
+            
           }else if(this.userParams[5] == "Ocupado"){
             this.itemSelected(5, "Ocupado");
 
@@ -170,8 +179,12 @@ no_disponible:boolean = false;
             this.ocupado = false;
             console.log(this.disponible," ", this.no_disponible, " ", this.ocupado);
             this.userParams[5] = "Disponible";
+
             console.log(this.userParams);
-            this.dataService.editarData(this.uid, this.userParams);
+            this.actualizarDatos(this.uid, this.userParams);
+            
+            console.log(this.userParams);
+            //this.dataService.editarData(this.uid, this.userParams);
 
             break;
           case "No disponible":
@@ -180,7 +193,12 @@ no_disponible:boolean = false;
             this.disponible = false;
             this.ocupado = false;
             console.log(this.disponible," ", this.no_disponible, " ", this.ocupado);
-            this.userParams[5] = "No disponible";
+            this.userParams[5] = "No disponible"; 
+            
+
+            console.log(this.userParams);
+            this.actualizarDatos(this.uid, this.userParams);
+
             console.log(this.userParams);
             
             break;
@@ -191,6 +209,8 @@ no_disponible:boolean = false;
             this.no_disponible = false;
             console.log(this.disponible," ", this.no_disponible, " ", this.ocupado);
             this.userParams[5] = "Ocupado";
+            console.log(this.userParams);
+            this.actualizarDatos(this.uid, this.userParams);
             console.log(this.userParams)
 
             break;     
@@ -198,15 +218,27 @@ no_disponible:boolean = false;
       }
       
       if(item === 6){
+        if(name === undefined){
+          name = this.userParams[6].name;
+        
+        }
+        console.log(name);
 
-        switch(this.userParams[item]){
+        switch(name){
           case "Teléfono":
-            this.contactar_perfil = [{id:1, name:this.userParams[item]},{id:2, name:"Correo electronico"}];
+            console.log('____________________________________________________________');
+            this.contactar_perfil = [{id:2, name:"Correo electronico"}];
             this.userParams[6] = "Telefono";
+            console.log(this.userParams);
+            this.actualizarDatos(this.uid, this.userParams);
+            console.log(this.userParams)
             break;
           case "Correo electronico": 
-            this.contactar_perfil = [{id:2, name:this.userParams[item]},{id:1, name:"Teléfono"}];
+            this.contactar_perfil = [{id:1, name:"Teléfono"}];
             this.userParams[6] = "Correo electronico"
+            console.log(this.userParams);
+            this.actualizarDatos(this.uid, this.userParams);
+            console.log(this.userParams)
             break;
           } 
 
@@ -259,6 +291,7 @@ no_disponible:boolean = false;
       recibirHorarioString(evento:string){
         console.log("Recibido: ",evento);
         this.userParams[7] = evento;
+        
         console.log(this.userParams);
       }
 
@@ -293,8 +326,23 @@ no_disponible:boolean = false;
       enviarDescripcion(){
         this.userParams[8] = this.nuevaDescripcion;
         console.log(this.userParams);
+        //this.newUserParams =  this.userParams ;
+        this.actualizarDatos(this.uid, this.userParams);
         this.descripcionEditada = false;
         this.btnEditarDescripcion = 'Editar'
+      }
+
+
+
+      actualizarDatos(uid:string, newInfo:string[] | any[]){
+        console.log("Array a actualizar: " + newInfo);
+        this.dataService.updateData(uid, newInfo).then(() => {
+          console.log('Informacion actualizada correctamente');
+         }).catch((error) => {
+            console.log('Error al modificar la informacion' + error);
+
+         });
+
       }
 
 }

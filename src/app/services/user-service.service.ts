@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Usuario } from '../usuarios';
 
 @Injectable({
@@ -37,4 +37,12 @@ export class UserServiceService {
     return this.firestore.collection('usuarios').doc(id).delete();//Borra el usuario con el id que se le pasa por parametro
 
   }
+
+
+  listarUsuario(): Observable<any>{
+    return this.firestore.collection('usuarios').snapshotChanges();
+
+  }
 }
+
+

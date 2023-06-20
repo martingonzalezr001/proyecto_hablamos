@@ -31,6 +31,9 @@ import { ElegirDiaComponent } from './elegir-dia/elegir-dia.component';
 import { ModalDeleteAccountComponent } from './modal-delete-account/modal-delete-account.component';
 import { CookieService } from 'ngx-cookie-service';
 import { UserServiceService } from './services/user-service.service';
+import { BannerCookiesComponent } from './extra-components/banner-cookies/banner-cookies.component';
+import { PerfilAjenoPruebaComponent } from './perfil-ajeno-prueba/perfil-ajeno-prueba.component';
+import { NotificacionEnviadaComponent } from './extra-components/notificacion-enviada/notificacion-enviada.component';
 
 
 const routes: Routes = [
@@ -42,6 +45,7 @@ const routes: Routes = [
   { path: 'conectar', component: ConectarComponent},
   { path: 'lista-usuarios', component: ListaUsuariosComponent},
   { path: 'recuperar-password', component: RecuperarPasswordComponent},
+  { path: 'usuario', component:PerfilAjenoPruebaComponent},
   { path: '**', component: HomeComponent },
 ];
 
@@ -61,7 +65,10 @@ const routes: Routes = [
     HorarioEditComponent,
     ElegirHoraComponent,
     ElegirDiaComponent,
-    ModalDeleteAccountComponent,  ],
+    ModalDeleteAccountComponent,
+    BannerCookiesComponent,
+    PerfilAjenoPruebaComponent,
+    NotificacionEnviadaComponent,  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

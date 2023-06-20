@@ -19,7 +19,7 @@
           </div>
           
           <div class="lg:flex lg:flex-1 lg:justify-end">
-            <a href="./login" class="rounded-md text-sm font-semibold leading-6 text-[#fff] px-3.5 py-2.5 transition duration-300  hover:bg-[#EBEBEB] hover:text-[#000]  ">Iniciar sesion <span aria-hidden="true">&rarr;</span></a>
+            <a (click)="iniciarSesion()" class="cursor-pointer rounded-md text-sm font-semibold leading-6 text-[#fff] px-3.5 py-2.5 transition duration-300  hover:bg-[#EBEBEB] hover:text-[#000]  ">Iniciar sesion <span aria-hidden="true">&rarr;</span></a>
           </div>
         </nav>
 
@@ -37,9 +37,9 @@
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
           <div class="mx-auto max-w-2xl text-center"> 
             <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl text-black ">Un espacio para compartir y conectar</h1>
-            <p class="mt-6 text-lg leading-8 text-gray-600 text-black">Únete a nuestra comunidad y brinda compañía a personas mayores que se sienten solas. Juntos podemos marcar la diferencia en sus vidas.</p>
+            <p class="mt-6 text-lg leading-8 text-gray-600 text-black">Únete a nuestra comunidad y brinda compañía a personas mayores que viven solas o a quienes les gustaría comunicarse, charlar un rato, compartir vivencias, opiniones etc... Así juntos podemos sentirnos en comunidad. </p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
-              <a href="./login" class="rounded-md bg-[#004aad] px-3.5 py-2.5 text-sm font-semibold text-[#fff] shadow-sm hover:bg-[#2A61AB] focus-visible:outline focus-visible:outline-2 transition duration-150 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Comenzar</a>
+              <a (click)="iniciarSesion()" class="cursor-pointer rounded-md bg-[#004aad] px-3.5 py-2.5 text-sm font-semibold text-[#fff] shadow-sm hover:bg-[#2A61AB] focus-visible:outline focus-visible:outline-2 transition duration-150 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Comenzar</a>
               <a (click)="mostrarLearning()" [ngClass]="{'disabled': learning }" class="rounded-md text-sm font-semibold leading-6 text-black px-3.5 py-2.5 transition duration-300  hover:bg-[#EBEBEB] cursor-pointer ">Saber más <span aria-hidden="true">→</span></a>
             </div>
           </div>
@@ -57,12 +57,12 @@
     <div *ngIf="learning">
       <div class="border-b border-gray-200 ml-8 pb-5 pt-5 w-[80%] mb-6">
         <h2 class="font-semibold text-xl leading-6 text-gray-900 ml-8 mb-4">Aprende a moverte por la web</h2>
-        <p class="mt-2 max-w-4xl text-sm text-[#6b7280]">Workcation is a property rental website. Etiam ullamcorper massa viverra consequat, consectetur id nulla tempus. Fringilla egestas justo massa purus sagittis malesuada.</p>
+        <p class="mt-2 max-w-4xl text-sm text-[#6b7280]">Con este video sabrás como moverte por nuestra página con mucha más facilidad, esperemos que te sea útil.</p>
 
       </div>
       
       <video class="w-[40%] mx-auto" controls autoplay>
-        <source src="../img/video/videoEj.mp4" type="video/mp4">
+        <source src="../img/Tutorial.mkv" type="video/mp4">
         Your browser does not support the video tag.
       </video>          
   
@@ -184,7 +184,7 @@ pruebas-->
             <p class="mt-6 text-base leading-7 text-gray-600">En nuestra plataforma, ofrecemos un espacio seguro y confiable para que las personas mayores puedan conectarse con otros usuarios dispuestos a tener una conversación.
               Creemos que la conversación es una herramienta valiosa para combatir la soledad y el aislamiento social, por lo que nuestra iniciativa tiene como objetivo mejorar el bienestar emocional de nuestros usuarios.</p>
             <div class="mt-10 flex">
-              <a href="./login" class="rounded-md bg-[#004aad] px-3.5 py-2.5 text-sm font-semibold text-[#fff] shadow-sm hover:bg-[#2A61AB] transition duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Únete a nosotros <span aria-hidden="true">&rarr;</span></a>
+              <a (click)="iniciarSesion()" class="cursor-pointer rounded-md bg-[#004aad] px-3.5 py-2.5 text-sm font-semibold text-[#fff] shadow-sm hover:bg-[#2A61AB] transition duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Únete a nosotros <span aria-hidden="true">&rarr;</span></a>
             </div>
           </div>
           <div class="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents sm:flex-col">
@@ -272,5 +272,5 @@ pruebas-->
           </div>
       </div>
   </footer>
-
+<app-banner-cookies (cerrar)="cerrarCookies($event)" (aceptar)="aceptarCookies($event)" *ngIf="!cookiesBannerCerrado"></app-banner-cookies>
   </div>

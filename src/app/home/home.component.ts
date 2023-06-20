@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,10 @@ export class HomeComponent {
 
 
 learning:boolean = false;
+cookiesAceptadas:boolean = false;
+cookiesBannerCerrado:boolean = false;
 
-constructor(){
+constructor(private router:Router){
   window.onscroll = () => {
     this.scroll = window.scrollY;
   
@@ -26,6 +29,25 @@ mostrarLearning(){
 }
 
 
+cerrarCookies(event:boolean){
+this.cookiesBannerCerrado = true;
+console.log(this.cookiesAceptadas);
+}
+
+aceptarCookies(event:boolean){
+  this.cookiesAceptadas = true;
+  console.log(this.cookiesAceptadas);
+}
+
+iniciarSesion(){
+  console.log(this.cookiesAceptadas);
+  if(this.cookiesAceptadas){
+    this.router.navigate(['./login']);
+  }else{
+    this.cookiesBannerCerrado = false;
+  }
+
+}
 
 goTop(){
   window.scroll({ 

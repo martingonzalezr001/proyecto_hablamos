@@ -1,0 +1,243 @@
+<div class="mt-20 bg-[#f5f5f5]">
+    <header class="absolute inset-x-0 top-0 z-50 mb-10">
+        <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+          <div class="flex lg:flex-1">
+            <button type="button" class="relative inline-flex items-center  bg-gray-100  transition duration-150 rounded-md px-2 py-2 text-[#004aad] ring-inset ring-[#fff]  focus:z-10" onclick="history.go(-1)">
+              <span class="sr-only">Previous</span>
+              <svg class="h-10 w-10  border-[#004aad] border-hidden border-2 rounded-md hover:border-solid hover:text-[#3558E6] transition duration-500 " viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+           
+            
+            
+          </nav>
+      
+    </header>
+      <div class="container-div w-[90%] flex flex-col justify-center mx-auto h-[90%] my-auto mt-20">
+        <h1 class="m-10 text-center font-semibold text-3xl">Users</h1>
+        <ul role="list" class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 p-10">
+          <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-[#fff] text-center shadow">
+            <div class="flex flex-1 flex-col p-8">
+              <img class="mx-auto h-28 w-28 flex-shrink-0 rounded-full" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
+              <h3 class="mt-6 text-xl font-medium text-gray-900">Darío Rodríguez</h3>
+              <dl class="mt-1 flex flex-grow flex-col justify-between">
+                <dt class="sr-only">Title</dt>
+                <dd class="text-md text-bold">De lunes a jueves de 12:00 a 18:00</dd>
+                <dt class="sr-only">Role</dt>
+                <dd class="mt-3">
+                    <span class=" h-4 w-4 rounded-full mr-10 bg-[#4ade80] inline-flex items-center"></span><span class="text-bold text-md text-gray-500">Disponible</span>
+                </dd>
+              </dl>
+            </div>
+            <div>
+                <div>
+                    <div class="-mt-px flex divide-x divide-gray-200">
+                      <div class="flex w-0 flex-1">
+                        <a href="./usuario" class="parent-element relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg  py-4  px-4 text-md font-semibold text-[#004aad] hover:bg-[#d1d5db] transition duration-300"> 
+                          <svg class="child-element h-8 w-8 text-[#78A8E8]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path fill="currentColor"
+                            d="M6.4 20q-1 0-1.7-.7T4 17.6v-1.175q0-.95.688-1.763q.687-.812 1.812-1.4q1.125-.587 2.538-.925Q10.45 12 11.9 12q1.45 0 2.9.337q1.45.338 2.6.938q1.15.6 1.875 1.413Q20 15.5 20 16.45v1.15q0 1-.7 1.7t-1.7.7Zm5.5-9q-1.45 0-2.475-1.025Q8.4 8.95 8.4 7.5q0-1.45 1.025-2.475Q10.45 4 11.9 4q1.475 0 2.487 1.025Q15.4 6.05 15.4 7.5q0 1.45-1.025 2.475Q13.35 11 11.9 11Z"/>
+                          </svg>
+                          Visitar Perfil
+                        </a>
+                      </div>
+                      <div class="-ml-px flex w-0 flex-1">
+                        <a (click)="abrirModal();" class="cursor-pointer parent-element relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg  py-4 text-md font-semibold text-[#004aad] hover:bg-[#d1d5db] transition duration-300" >
+                          <svg class="child-element h-8 w-8 text-[#78A8E8]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M17 22q-.425 0-.713-.288T16 21v-1.25q-.975-.325-1.75-.988t-1.225-1.587q-.2-.375 0-.75t.6-.55q.35-.15.7.025t.55.525q.4.725 1.1 1.15T17.5 18h3q.625 0 1.063.438T22 19.5V21q0 .425-.288.713T21 22h-4Zm2-5q-.825 0-1.413-.588T17 15q0-.825.588-1.413T19 13q.825 0 1.413.588T21 15q0 .825-.588 1.413T19 17Zm-1.925-9.95q-2.35.3-4.013 1.975t-1.987 4.025q-.05.425-.35.688T10 14q-.425 0-.713-.288t-.237-.687q.35-3.2 2.613-5.425t5.462-2.55q.375-.05.625.238T18 6q0 .4-.263.7t-.662.35Zm.15 4.05q-.775.2-1.35.762T15.1 13.2q-.1.35-.412.575T14 14q-.425 0-.7-.263t-.225-.612q.275-1.575 1.413-2.675T17.2 9.075q.35-.05.575.238T18 10q0 .375-.213.688t-.562.412ZM3 11q-.425 0-.713-.288T2 10V8.5q0-.625.438-1.063T3.5 7h3q.825 0 1.525-.425t1.1-1.15q.2-.35.55-.563t.725-.087q.425.125.625.475t.05.7q-.425 1-1.225 1.725T8 8.75V10q0 .425-.287.712T7 11H3Zm2-5q-.825 0-1.413-.588T3 4q0-.825.588-1.413T5 2q.825 0 1.413.588T7 4q0 .825-.588 1.413T5 6Z"/>
+                          </svg>
+                          Contactar
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </li>
+    
+          <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-[#fff] text-center shadow">
+            <div class="flex flex-1 flex-col p-8">
+              <img class="mx-auto h-28 w-28 flex-shrink-0 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
+              <h3 class="mt-6 text-xl font-medium text-gray-900">Jane Cooper</h3>
+              <dl class="mt-1 flex flex-grow flex-col justify-between">
+                <dt class="sr-only">Title</dt>
+                <dd class="text-md text-bold">De viernes a domingo de 12:00 a 15:00</dd>
+                <dt class="sr-only">Role</dt>
+                <dd class="mt-3">
+                    <span class=" h-4 w-4 rounded-full mr-10 bg-[#4ade80] inline-flex items-center"></span><span class="text-bold text-md text-gray-500">Disponible</span>
+                </dd>
+              </dl>
+            </div>
+            <div>
+                <div>
+                    <div class="-mt-px flex divide-x divide-gray-200">
+                      <div class="flex w-0 flex-1">
+                        <a href="./perfilAjeno.html" class="parent-element relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg  py-4  px-4 text-md font-semibold text-[#004aad] hover:bg-[#d1d5db] transition duration-300"> 
+                          <svg class="child-element h-8 w-8 text-[#78A8E8]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path fill="currentColor"
+                            d="M6.4 20q-1 0-1.7-.7T4 17.6v-1.175q0-.95.688-1.763q.687-.812 1.812-1.4q1.125-.587 2.538-.925Q10.45 12 11.9 12q1.45 0 2.9.337q1.45.338 2.6.938q1.15.6 1.875 1.413Q20 15.5 20 16.45v1.15q0 1-.7 1.7t-1.7.7Zm5.5-9q-1.45 0-2.475-1.025Q8.4 8.95 8.4 7.5q0-1.45 1.025-2.475Q10.45 4 11.9 4q1.475 0 2.487 1.025Q15.4 6.05 15.4 7.5q0 1.45-1.025 2.475Q13.35 11 11.9 11Z"/>
+                          </svg>
+                          Visitar Perfil
+                        </a>
+                      </div>
+                      <div class="-ml-px flex w-0 flex-1">
+                        <a href="tel:+1-202-555-0170" class="parent-element relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg  py-4 text-md font-semibold text-[#004aad] hover:bg-[#d1d5db] transition duration-300" >
+                          <svg class="child-element h-8 w-8 text-[#78A8E8]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M17 22q-.425 0-.713-.288T16 21v-1.25q-.975-.325-1.75-.988t-1.225-1.587q-.2-.375 0-.75t.6-.55q.35-.15.7.025t.55.525q.4.725 1.1 1.15T17.5 18h3q.625 0 1.063.438T22 19.5V21q0 .425-.288.713T21 22h-4Zm2-5q-.825 0-1.413-.588T17 15q0-.825.588-1.413T19 13q.825 0 1.413.588T21 15q0 .825-.588 1.413T19 17Zm-1.925-9.95q-2.35.3-4.013 1.975t-1.987 4.025q-.05.425-.35.688T10 14q-.425 0-.713-.288t-.237-.687q.35-3.2 2.613-5.425t5.462-2.55q.375-.05.625.238T18 6q0 .4-.263.7t-.662.35Zm.15 4.05q-.775.2-1.35.762T15.1 13.2q-.1.35-.412.575T14 14q-.425 0-.7-.263t-.225-.612q.275-1.575 1.413-2.675T17.2 9.075q.35-.05.575.238T18 10q0 .375-.213.688t-.562.412ZM3 11q-.425 0-.713-.288T2 10V8.5q0-.625.438-1.063T3.5 7h3q.825 0 1.525-.425t1.1-1.15q.2-.35.55-.563t.725-.087q.425.125.625.475t.05.7q-.425 1-1.225 1.725T8 8.75V10q0 .425-.287.712T7 11H3Zm2-5q-.825 0-1.413-.588T3 4q0-.825.588-1.413T5 2q.825 0 1.413.588T7 4q0 .825-.588 1.413T5 6Z"/>
+                          </svg>
+                          Contactar
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </li>
+    
+          <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-[#fff] text-center shadow">
+            <div class="flex flex-1 flex-col p-8">
+              <img class="mx-auto h-28 w-28 flex-shrink-0 rounded-full" src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
+              <h3 class="mt-6 text-xl font-medium text-gray-900">Cameron Williamson</h3>
+              <dl class="mt-1 flex flex-grow flex-col justify-between">
+                <dt class="sr-only">Title</dt>
+                <dd class="text-md text-bold">Martes y viernes de 12:00 a 16:00</dd>
+                <dt class="sr-only">Role</dt>
+                <dd class="mt-3">
+                    <span class=" h-4 w-4 rounded-full mr-10 bg-[#fbbf24] inline-flex items-center"></span><span class="text-bold text-md text-gray-500">Ocupado</span>  
+                </dd>
+              </dl>
+            </div>
+            <div>
+                <div>
+                    <div class="-mt-px flex divide-x divide-gray-200">
+                      <div class="flex w-0 flex-1">
+                        <a href="./perfilAjeno.html" class="parent-element relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg py-4  px-4 text-md font-semibold text-[#004aad] hover:bg-[#d1d5db] transition duration-300"> 
+                          <svg class="child-element h-8 w-8 text-[#78A8E8]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path fill="currentColor"
+                            d="M6.4 20q-1 0-1.7-.7T4 17.6v-1.175q0-.95.688-1.763q.687-.812 1.812-1.4q1.125-.587 2.538-.925Q10.45 12 11.9 12q1.45 0 2.9.337q1.45.338 2.6.938q1.15.6 1.875 1.413Q20 15.5 20 16.45v1.15q0 1-.7 1.7t-1.7.7Zm5.5-9q-1.45 0-2.475-1.025Q8.4 8.95 8.4 7.5q0-1.45 1.025-2.475Q10.45 4 11.9 4q1.475 0 2.487 1.025Q15.4 6.05 15.4 7.5q0 1.45-1.025 2.475Q13.35 11 11.9 11Z"/>
+                          </svg>
+                          Visitar Perfil
+                        </a>
+                      </div>
+                      <div class="-ml-px flex w-0 flex-1">
+                        <a href="tel:+1-202-555-0170" class="parent-element relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg py-4 text-md font-semibold text-[#004aad] hover:bg-[#d1d5db] transition duration-300" >
+                          <svg class="child-element h-8 w-8 text-[#78A8E8]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M17 22q-.425 0-.713-.288T16 21v-1.25q-.975-.325-1.75-.988t-1.225-1.587q-.2-.375 0-.75t.6-.55q.35-.15.7.025t.55.525q.4.725 1.1 1.15T17.5 18h3q.625 0 1.063.438T22 19.5V21q0 .425-.288.713T21 22h-4Zm2-5q-.825 0-1.413-.588T17 15q0-.825.588-1.413T19 13q.825 0 1.413.588T21 15q0 .825-.588 1.413T19 17Zm-1.925-9.95q-2.35.3-4.013 1.975t-1.987 4.025q-.05.425-.35.688T10 14q-.425 0-.713-.288t-.237-.687q.35-3.2 2.613-5.425t5.462-2.55q.375-.05.625.238T18 6q0 .4-.263.7t-.662.35Zm.15 4.05q-.775.2-1.35.762T15.1 13.2q-.1.35-.412.575T14 14q-.425 0-.7-.263t-.225-.612q.275-1.575 1.413-2.675T17.2 9.075q.35-.05.575.238T18 10q0 .375-.213.688t-.562.412ZM3 11q-.425 0-.713-.288T2 10V8.5q0-.625.438-1.063T3.5 7h3q.825 0 1.525-.425t1.1-1.15q.2-.35.55-.563t.725-.087q.425.125.625.475t.05.7q-.425 1-1.225 1.725T8 8.75V10q0 .425-.287.712T7 11H3Zm2-5q-.825 0-1.413-.588T3 4q0-.825.588-1.413T5 2q.825 0 1.413.588T7 4q0 .825-.588 1.413T5 6Z"/>
+                          </svg>
+                          Contactar
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </li>
+    
+          <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-[#fff] text-center shadow">
+            <div class="flex flex-1 flex-col p-8">
+              <img class="mx-auto h-28 w-28 flex-shrink-0 rounded-full" src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
+              <h3 class="mt-6 text-xl font-medium text-gray-900">Susan Lewis</h3>
+              <dl class="mt-1 flex flex-grow flex-col justify-between">
+                <dt class="sr-only">Title</dt>
+                <dd class="text-md text-bold">No disponible actualmente</dd>
+                <dt class="sr-only">Role</dt>
+                <dd class="mt-3">
+                    <span class=" h-4 w-4 rounded-full mr-10 bg-[#f87171] inline-flex items-center"></span><span class="text-bold text-md text-gray-500">No disponible</span>  
+                </dd>
+              </dl>
+            </div>
+            <div>
+                <div>
+                    <div class="-mt-px flex divide-x divide-gray-200">
+                      <div class="flex w-0 flex-1">
+                        <a href="./perfilAjeno.html" class="parent-element relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg  py-4  px-4 text-md font-semibold text-[#004aad] hover:bg-[#d1d5db] transition duration-300"> 
+                          <svg class="h-8 w-8 text-[#78A8E8] child-element" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path fill="currentColor"
+                            d="M6.4 20q-1 0-1.7-.7T4 17.6v-1.175q0-.95.688-1.763q.687-.812 1.812-1.4q1.125-.587 2.538-.925Q10.45 12 11.9 12q1.45 0 2.9.337q1.45.338 2.6.938q1.15.6 1.875 1.413Q20 15.5 20 16.45v1.15q0 1-.7 1.7t-1.7.7Zm5.5-9q-1.45 0-2.475-1.025Q8.4 8.95 8.4 7.5q0-1.45 1.025-2.475Q10.45 4 11.9 4q1.475 0 2.487 1.025Q15.4 6.05 15.4 7.5q0 1.45-1.025 2.475Q13.35 11 11.9 11Z"/>
+                          </svg>
+                          Visitar Perfil
+                        </a>
+                      </div>
+                      <div class="-ml-px flex w-0 flex-1">
+                        <a (click)="abrirModal()" class="cursor-pointer parent-element relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg  py-4 text-md font-semibold text-[#004aad] hover:bg-[#d1d5db] transition duration-300" >
+                          <svg class="child-element h-8 w-8 text-[#78A8E8]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M17 22q-.425 0-.713-.288T16 21v-1.25q-.975-.325-1.75-.988t-1.225-1.587q-.2-.375 0-.75t.6-.55q.35-.15.7.025t.55.525q.4.725 1.1 1.15T17.5 18h3q.625 0 1.063.438T22 19.5V21q0 .425-.288.713T21 22h-4Zm2-5q-.825 0-1.413-.588T17 15q0-.825.588-1.413T19 13q.825 0 1.413.588T21 15q0 .825-.588 1.413T19 17Zm-1.925-9.95q-2.35.3-4.013 1.975t-1.987 4.025q-.05.425-.35.688T10 14q-.425 0-.713-.288t-.237-.687q.35-3.2 2.613-5.425t5.462-2.55q.375-.05.625.238T18 6q0 .4-.263.7t-.662.35Zm.15 4.05q-.775.2-1.35.762T15.1 13.2q-.1.35-.412.575T14 14q-.425 0-.7-.263t-.225-.612q.275-1.575 1.413-2.675T17.2 9.075q.35-.05.575.238T18 10q0 .375-.213.688t-.562.412ZM3 11q-.425 0-.713-.288T2 10V8.5q0-.625.438-1.063T3.5 7h3q.825 0 1.525-.425t1.1-1.15q.2-.35.55-.563t.725-.087q.425.125.625.475t.05.7q-.425 1-1.225 1.725T8 8.75V10q0 .425-.287.712T7 11H3Zm2-5q-.825 0-1.413-.588T3 4q0-.825.588-1.413T5 2q.825 0 1.413.588T7 4q0 .825-.588 1.413T5 6Z"/>
+                          </svg>
+                          Contactar
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </li>
+    
+          <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-[#fff] text-center shadow">
+            <div class="flex flex-1 flex-col p-8">
+              <img class="mx-auto h-28 w-28 flex-shrink-0 rounded-full" src="https://randomuser.me/api/portraits/women/62.jpg" alt="">
+              <h3 class="mt-6 text-xl font-medium text-gray-900">Bevery Castro</h3>
+              <dl class="mt-1 flex flex-grow flex-col justify-between">
+                <dt class="sr-only">Title</dt>
+                <dd class="text-md text-bold">De lunes a jueves de 12:00 a 18:00</dd>
+                <dt class="sr-only">Role</dt>
+                <dd class="mt-3">
+                    <span class=" h-4 w-4 rounded-full mr-10 bg-[#4ade80] inline-flex items-center"></span><span class="text-bold text-md text-gray-500">Disponible</span>  
+                </dd>
+              </dl>
+            </div>
+            <div>
+                <div>
+                    <div class="-mt-px flex divide-x divide-gray-200">
+                      <div class="flex w-0 flex-1">
+                        <a href="./perfilAjeno.html" class="parent-element relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg  py-4  px-4 text-md font-semibold text-[#004aad] hover:bg-[#d1d5db] transition duration-300"> 
+                          <svg class="child-element h-8 w-8 text-[#78A8E8]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path fill="currentColor"
+                            d="M6.4 20q-1 0-1.7-.7T4 17.6v-1.175q0-.95.688-1.763q.687-.812 1.812-1.4q1.125-.587 2.538-.925Q10.45 12 11.9 12q1.45 0 2.9.337q1.45.338 2.6.938q1.15.6 1.875 1.413Q20 15.5 20 16.45v1.15q0 1-.7 1.7t-1.7.7Zm5.5-9q-1.45 0-2.475-1.025Q8.4 8.95 8.4 7.5q0-1.45 1.025-2.475Q10.45 4 11.9 4q1.475 0 2.487 1.025Q15.4 6.05 15.4 7.5q0 1.45-1.025 2.475Q13.35 11 11.9 11Z"/>
+                          </svg>
+                          Visitar Perfil
+                        </a>
+                      </div>
+                      <div class="-ml-px flex w-0 flex-1">
+                        <a href="tel:+1-202-555-0170" class="parent-element relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg  py-4 text-md font-semibold text-[#004aad] hover:bg-[#d1d5db] transition duration-300" >
+                          <svg class="child-element h-8 w-8 text-[#78A8E8]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M17 22q-.425 0-.713-.288T16 21v-1.25q-.975-.325-1.75-.988t-1.225-1.587q-.2-.375 0-.75t.6-.55q.35-.15.7.025t.55.525q.4.725 1.1 1.15T17.5 18h3q.625 0 1.063.438T22 19.5V21q0 .425-.288.713T21 22h-4Zm2-5q-.825 0-1.413-.588T17 15q0-.825.588-1.413T19 13q.825 0 1.413.588T21 15q0 .825-.588 1.413T19 17Zm-1.925-9.95q-2.35.3-4.013 1.975t-1.987 4.025q-.05.425-.35.688T10 14q-.425 0-.713-.288t-.237-.687q.35-3.2 2.613-5.425t5.462-2.55q.375-.05.625.238T18 6q0 .4-.263.7t-.662.35Zm.15 4.05q-.775.2-1.35.762T15.1 13.2q-.1.35-.412.575T14 14q-.425 0-.7-.263t-.225-.612q.275-1.575 1.413-2.675T17.2 9.075q.35-.05.575.238T18 10q0 .375-.213.688t-.562.412ZM3 11q-.425 0-.713-.288T2 10V8.5q0-.625.438-1.063T3.5 7h3q.825 0 1.525-.425t1.1-1.15q.2-.35.55-.563t.725-.087q.425.125.625.475t.05.7q-.425 1-1.225 1.725T8 8.75V10q0 .425-.287.712T7 11H3Zm2-5q-.825 0-1.413-.588T3 4q0-.825.588-1.413T5 2q.825 0 1.413.588T7 4q0 .825-.588 1.413T5 6Z"/>
+                          </svg>
+                          Contactar
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </li>
+    
+          <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-[#fff] text-center shadow">
+            <div class="flex flex-1 flex-col p-8">
+              <img class="mx-auto h-28 w-28 flex-shrink-0 rounded-full" src="https://randomuser.me/api/portraits/men/72.jpg" alt="">
+              <h3 class="mt-6 text-xl font-medium text-gray-900">Daryl Chapman</h3>
+              <dl class="mt-1 flex flex-grow flex-col justify-between">
+                <dt class="sr-only">Title</dt>
+                <dd class="text-md text-bold">Martes y jueves de 17:00 a 20:00 </dd>
+                <dt class="sr-only">Role</dt>
+                <dd class="mt-3">
+                    <span class=" h-4 w-4 rounded-full mr-10 bg-[#4ade80] inline-flex items-center"></span><span class="text-bold text-md text-gray-500">Disponible</span>  
+                </dd>
+              </dl>
+            </div>
+            <div>
+                <div>
+                    <div class="-mt-px flex divide-x ">
+                      <div class="flex w-0 flex-1">
+                        <a href="./perfilAjeno.html" class="parent-element relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg  py-4  px-4 text-md font-semibold text-[#004aad] hover:bg-[#d1d5db] transition duration-300"> 
+                          <svg class="child-element h-8 w-8 text-[#78A8E8]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path fill="currentColor"
+                            d="M6.4 20q-1 0-1.7-.7T4 17.6v-1.175q0-.95.688-1.763q.687-.812 1.812-1.4q1.125-.587 2.538-.925Q10.45 12 11.9 12q1.45 0 2.9.337q1.45.338 2.6.938q1.15.6 1.875 1.413Q20 15.5 20 16.45v1.15q0 1-.7 1.7t-1.7.7Zm5.5-9q-1.45 0-2.475-1.025Q8.4 8.95 8.4 7.5q0-1.45 1.025-2.475Q10.45 4 11.9 4q1.475 0 2.487 1.025Q15.4 6.05 15.4 7.5q0 1.45-1.025 2.475Q13.35 11 11.9 11Z"/>
+                          </svg>
+                          Visitar Perfil
+                        </a>
+                      </div>
+                      <div class="-ml-px flex w-0 flex-1">
+                        <a href="tel:+1-202-555-0170" class="parent-element relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg  py-4 text-md font-semibold text-[#004aad] hover:bg-[#d1d5db] transition duration-300" >
+                          <svg class="child-element h-8 w-8 text-[#78A8E8]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M17 22q-.425 0-.713-.288T16 21v-1.25q-.975-.325-1.75-.988t-1.225-1.587q-.2-.375 0-.75t.6-.55q.35-.15.7.025t.55.525q.4.725 1.1 1.15T17.5 18h3q.625 0 1.063.438T22 19.5V21q0 .425-.288.713T21 22h-4Zm2-5q-.825 0-1.413-.588T17 15q0-.825.588-1.413T19 13q.825 0 1.413.588T21 15q0 .825-.588 1.413T19 17Zm-1.925-9.95q-2.35.3-4.013 1.975t-1.987 4.025q-.05.425-.35.688T10 14q-.425 0-.713-.288t-.237-.687q.35-3.2 2.613-5.425t5.462-2.55q.375-.05.625.238T18 6q0 .4-.263.7t-.662.35Zm.15 4.05q-.775.2-1.35.762T15.1 13.2q-.1.35-.412.575T14 14q-.425 0-.7-.263t-.225-.612q.275-1.575 1.413-2.675T17.2 9.075q.35-.05.575.238T18 10q0 .375-.213.688t-.562.412ZM3 11q-.425 0-.713-.288T2 10V8.5q0-.625.438-1.063T3.5 7h3q.825 0 1.525-.425t1.1-1.15q.2-.35.55-.563t.725-.087q.425.125.625.475t.05.7q-.425 1-1.225 1.725T8 8.75V10q0 .425-.287.712T7 11H3Zm2-5q-.825 0-1.413-.588T3 4q0-.825.588-1.413T5 2q.825 0 1.413.588T7 4q0 .825-.588 1.413T5 6Z"/>
+                          </svg>
+                          Contactar
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </li>
+        
+          <!-- More people... -->
+        </ul>
+        
+    
+      </div>
+</div>
+<app-notificacion-enviada *ngIf="notificacionAceptada" (cerrar)="cerrarModal($event)"></app-notificacion-enviada>

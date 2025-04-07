@@ -1,0 +1,262 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title> -->
+    <link rel="stylesheet" href="registro.component.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+
+<!--</head>
+<body>-->
+    <!--
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+<!--
+  This example requires updating your template:
+
+  ```
+  <html class="h-full bg-gray-50">
+  <body class="h-full">
+  ```
+-->
+<header class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <div class="flex lg:flex-1">
+        <button type="button" class="relative inline-flex items-center  bg-gray-100  transition duration-150 rounded-md px-2 py-2 text-[#004aad] ring-inset ring-white  focus:z-10" onclick="history.go(-1)">
+          <span class="sr-only">Previous</span>
+          <svg class="h-10 w-10  border-[#004aad] border-hidden border-2 rounded-md hover:border-solid hover:text-[#3558E6] transition duration-500 ease-in " viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
+     
+        
+      </nav>
+
+</header>
+<div class="flex relative  min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8 container-div">
+    
+    <div class="w-full max-w-md space-y-8 relative">
+      <div>
+        <h2 class="mt-6 text-center text-4xl font-bold tracking-tight text-gray-900">{{ registro_titulo }}</h2>
+        <p class="mt-2 text-center text-sm text-gray-600">
+          {{ya_tienes_cuenta}}<br>
+          <a (click)="llevarALogin()" class="font-medium text-[#004aad] hover:text-indigo-500 hover:underline decoration-2 cursor-pointer" >{{iniciar_sesion}}</a>
+        </p>
+      </div>
+      <form class="mt-8 space-y-6" action="#" method="POST" (ngSubmit)="comenzar()" [formGroup]="registrar_usuario" #registerForm = "ngForm">
+        <div class="-space-y-px rounded-md shadow-sm">
+            <div class="inputs relative">
+                <div class="mt-2 flex rounded-md shadow-md relative ">
+                    <label for="nombre" class="sr-only">Nombre</label>
+
+                    <div class="relative flex flex-grow items-stretch focus-within:z-10">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <svg class="h-5 w-5 text-[#004aad]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M7 8a3 3 0 100-6 3 3 0 000 6zM14.5 9a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM1.615 16.428a1.224 1.224 0 01-.569-1.175 6.002 6.002 0 0111.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 017 18a9.953 9.953 0 01-5.385-1.572zM14.5 16h-.106c.07-.297.088-.611.048-.933a7.47 7.47 0 00-1.588-3.755 4.502 4.502 0 015.874 2.636.818.818 0 01-.36.98A7.465 7.465 0 0114.5 16z" />
+                            </svg>
+                        </div>
+                        <input type="text" name="nombre" id="nombre"  formControlName="nombre" (blur)="identificarError();" [ngClass]="{'empty': error_required_name == true}" class="block w-full rounded-md rounded-l-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{nombre_ph}}" required>
+
+                      </div>
+                      <span class="text-clifford self-center justify-center pl-10 absolute font-bold my-16" *ngIf="error_required_name"  >Tiene que introducir su nombre</span>
+
+
+                </div>
+
+                <div>
+                    <div class="mt-2 flex rounded-md shadow-md">
+                        <label for="apellidos" class="sr-only">{{apellidos_ph}}</label>
+
+                        <div class="relative flex flex-grow items-stretch focus-within:z-10">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg class="h-5 w-5 text-[#004aad]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path d="M7 8a3 3 0 100-6 3 3 0 000 6zM14.5 9a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM1.615 16.428a1.224 1.224 0 01-.569-1.175 6.002 6.002 0 0111.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 017 18a9.953 9.953 0 01-5.385-1.572zM14.5 16h-.106c.07-.297.088-.611.048-.933a7.47 7.47 0 00-1.588-3.755 4.502 4.502 0 015.874 2.636.818.818 0 01-.36.98A7.465 7.465 0 0114.5 16z" />
+                                </svg>
+                            </div>
+                            <input type="text" name="apellidos" id="apellidos" formControlName="apellidos" (blur)="identificarError();" [ngClass]="{'empty': error_required_apellidos == true}" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{apellidos_ph}}" required>
+                        </div>
+                        <span class="text-clifford self-center justify-center pl-10 absolute font-bold my-16" *ngIf="error_required_apellidos"  >Tiene que introducir sus apellidos</span>
+
+                    </div>
+                </div>
+
+                <div>
+                    <label for="email-address" class="sr-only">Email address</label>
+            
+                    <div class="relative mt-2 rounded-md shadow-md">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                        <svg class="h-5 w-5 text-[#004aad]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+                            <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+                        </svg>
+                        </div>
+                        <input type="email" name="email" id="email" formControlName="email" #emailInput class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{email_ph}}" required>
+                    </div>
+                </div>          
+                <div>
+                  <label for="password" class="sr-only">Repeat Password</label>
+                  <div class="relative mt-2 rounded-md shadow-md flex row">
+                        
+                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                        <svg class="h-5 w-5 text-[#004aad] group-hover:text-indigo-400 mr-16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
+                        </svg>
+                        
+                    </div>
+                    <span class="text-clifford self-center justify-center pl-10 absolute font-bold my-16" *ngIf="error_same_password"  >Tiene que coincidir con su anterior contraseña</span>
+
+                    <input type="password" formControlName="confirmar_contrasenia" name="password" id="password" (blur)="identificarError();" [ngClass]="{'empty': error_same_password == true}" class="block w-full rounded-md  py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{confirmar_password_ph}}" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex self-center p-2 cursor-pointer" (click)="mirarPassword()"  width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5s5 2.24 5 5s-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3s3-1.34 3-3s-1.34-3-3-3z"/></svg>
+                  </div>
+                  
+
+                </div> 
+                <div>
+                    
+                    
+                </div> 
+                <div>
+                    <!--Disponiblilidad-->
+                  <div>
+                    <label for="disponibilidad" class="sr-only">Horario disponibilidad</label>
+
+                    <div class="relative flex flex-grow items-stretch focus-within:z-10 shadow-md my-2">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#004aad]" viewBox="0 0 24 24"><g fill="none"><path d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z"/>
+                             <path fill="currentColor" d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2Zm0 4a1 1 0 0 0-1 1v5a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V7a1 1 0 0 0-1-1Z"/></g>
+                          </svg>
+                        </div>
+                        <input type="text" name="disponibilidad" id="disponibilidad" formControlName="horario_disponibilidad" (blur)="identificarError();" [ngClass]="{'empty': error_required_horario == true}" class="block w-full rounded-md border-1 border-solid border-black py-1.5 pl-10 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{horario_ph}}" required>
+                        <span class="text-clifford self-center justify-center pl-10 absolute font-bold my-16" *ngIf="error_required_horario"  >Introduzca un horario. Ejemplo: Lunes de 14:00-15:00</span>
+
+                      </div>
+
+
+
+
+                  </div>
+                </div>
+                <!--Estado de disponibilidad actual-->
+                <div class="relative my-2 rounded-md shadow-md ">
+                  <ng-select [items]="estados" name="estado" id="estado"  bindLabel="name" (change)="itemSelected($event)" placeholder="{{estado_ph}}"></ng-select>
+                </div>
+              <!--Manera de contactar-->
+                <div>
+                  <label for="disponibilidad" class="sr-only">Disponibilidad</label>
+                  <div class="relative my-2 rounded-md shadow-md">
+                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="text-[#004aad]" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19.95 21q-3.225 0-6.287-1.438t-5.425-3.8q-2.363-2.362-3.8-5.425T3 4.05q0-.45.3-.75t.75-.3H8.1q.35 0 .625.225t.325.575l.65 3.5q.05.35-.013.638T9.4 8.45L7 10.9q1.05 1.8 2.625 3.375T13.1 17l2.35-2.35q.225-.225.588-.337t.712-.063l3.45.7q.35.075.575.338T21 15.9v4.05q0 .45-.3.75t-.75.3Z"/>
+                      </svg>
+                    </div>
+                    <ng-select [items]="gadgets" class="border-0" bindLabel="name" [(ngModel)]="forma_contactar" (change)="itemSelected($event)"  placeholder="{{contacto_ph}}"></ng-select>
+                  </div>
+
+        <!--  Descripcion   -->
+        </div>
+              </div>
+                <div>
+                        <div class="flex rounded-md shadow-md">
+                            <label for="descripción" class="sr-only">Descripcion</label>
+
+                            <div class="relative flex flex-grow items-stretch focus-within:z-10">
+                              <textarea rows="3" name="descripción" id="descripción" formControlName="descripcion" class="block w-full resize-none border-0 rounded-md bg-transparent py-1.5 px-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="&nbsp;{{descripcion_ph}}"></textarea>                            </div>
+                        </div>
+                </div>
+                <div>
+                  <div class="col-span-full">
+                    <div class="mt-2 flex items-center gap-x-3">
+                      <svg class="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+                      </svg>
+                      <button type="file" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-md border-2 border-black border-solid  hover:bg-gray-50">{{foto_perfil}}</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="relative flex items-start pb-4 pt-3.5">
+                  <div class="min-w-0 flex-1 text-sm leading-6">
+                    <label for="pedir_tlf" class="font-medium text-gray-900 text-center">{{preguntar_tlf}}</label>
+                  </div>
+                  <div class="ml-3 flex h-6 items-center">
+                    <input id="pedir_tlf" aria-describedby="comments-description" name="pedir_tlf" [checked]="telefono_check" (change)="cambiar()"  type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 cursor-pointer">
+                  </div>
+                </div>
+                <div>
+
+                </div>
+
+
+            </div>
+  
+        <div class="flex items-center justify-between">
+          
+        </div>
+  
+        <div>
+          <button type="submit" class="btn-submit group relative flex w-full justify-center rounded-md bg-[#004aad] transition duration-150 px-3 py-2 text-xl font-semibold text-[#fff] hover:bg-[#2A61AB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+              
+            </span>
+            {{comenzar_btn}}
+          </button>
+        </div>
+      </form>
+
+      <!--Notificacion de registro-->
+      <div class="rounded-md bg-green-50 p-4" hidden="true">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p class="text-sm font-medium text-green-800">Te has registrado correctamente</p>
+          </div>
+          <div class="ml-auto pl-3">
+            <div class="-mx-1.5 -my-1.5">
+              <button type="button" class="inline-flex rounded-md bg-green-50 p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-green-50">
+                <span class="sr-only">Dismiss</span>
+                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <app-notification-success *ngIf="succes_login" [tipo]="registro" class="modal-login pointer-events-auto w-full max-w-sm bg-[#00C851] rounded-lg text-white shadow-lg ring-1 ring-black ring-opacity-5 z-10 bottom-[90%] right-[1%] absolute"></app-notification-success>
+      <app-notification-error *ngIf="!camposRellenados" class="text-clifford self-center  p-3">
+      </app-notification-error>
+      <!--Modal form telefono-->
+    </div>
+  </div>
+  <app-modal-tlf (cerrar)="cerrarModal($event)" *ngIf="tlfModal" [usuario]="usuario" class="h-full w-full fixed inset-0 bg-gray-500 bg-[#f2f2f2] bg-opacity-10 transition-opacity"></app-modal-tlf>
+
+  <!--
+</body>
+</html>-->

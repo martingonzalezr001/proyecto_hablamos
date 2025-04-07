@@ -1,0 +1,276 @@
+
+<div class="relative bg-white">
+        
+  <header class="fixed inset-x-0 top-0 z-50 transition duration-1000" [ngClass]="{'mySticky': scroll > 125}">
+      <nav class="flex items-center justify-between p-1 lg:px-8 top-0 right-0 left-0 hover:bg-blue " aria-label="Global">
+          <div class="flex lg:flex-1">
+            <a href="#" class="-m-1.5 p-1.5">
+              <span class="sr-only">Your Company</span>
+              <img class="h-40 w-40 bg-cover" src="assets/img/hablamosSinFondo.gif" alt="">
+            </a>
+          </div>
+          <div class="flex lg:hidden">
+            <!--<button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+              <span class="sr-only">Open main menu</span>
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>-->
+          </div>
+          
+          <div class="lg:flex lg:flex-1 lg:justify-end">
+            <a (click)="iniciarSesion()" class="cursor-pointer rounded-md text-sm font-semibold leading-6 text-[#fff] px-3.5 py-2.5 transition duration-300  hover:bg-[#EBEBEB] hover:text-[#000]  ">Iniciar sesion <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </nav>
+
+  </header> 
+  <main>
+    <!-- Hero section -->
+    <div class="relative isolate py-32 xl:py-32 overflow-hidden mb-24 " id="hero">
+      <img src="assets/img/bgLanding.png" alt="" class="absolute inset-0 -z-10  xl:w-full  xl:h-full h-full w-full object-cover md:object-cover sm:object-cover md:h-full sm:h-full 3xl:object-cover bg-gradient-to-r from-cyan-500 to-blue-500">
+
+      <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80 " aria-hidden="true">
+        <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] s-translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#3c1ee9] to-[#0c084e] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(100.00% 100.00%, 100% 100.00%, 100.00% 100.00%, 100.00% 1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+
+      </div>
+      <div class="py-28 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl text-center"> 
+            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl text-black ">Un espacio para compartir y conectar</h1>
+            <p class="mt-6 text-lg leading-8 text-gray-600 text-black">Únete a nuestra comunidad y brinda compañía a personas mayores que viven solas o a quienes les gustaría comunicarse, charlar un rato, compartir vivencias, opiniones etc... Así juntos podemos sentirnos en comunidad. </p>
+            <div class="mt-10 flex items-center justify-center gap-x-6">
+              <a (click)="iniciarSesion()" class="cursor-pointer rounded-md bg-[#004aad] px-3.5 py-2.5 text-sm font-semibold text-[#fff] shadow-sm hover:bg-[#2A61AB] focus-visible:outline focus-visible:outline-2 transition duration-150 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Comenzar</a>
+              <a (click)="mostrarLearning()" [ngClass]="{'disabled': learning }" class="rounded-md text-sm font-semibold leading-6 text-black px-3.5 py-2.5 transition duration-300  hover:bg-[#EBEBEB] cursor-pointer ">Saber más <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+        <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#fff] to-[#004AAD] opacity-0 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+      </div>
+    </div>
+      <a *ngIf="scroll > 20" (click)="goTop();" class="fixed bottom-0 right-0 rounded-tl rounded-tr text-[#fff] m-4 p-2 bg-[#004AAD] hover:bg-[#2A61AB] transition duration-150 cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M104.704 685.248a64 64 0 0 0 90.496 0l316.8-316.8l316.8 316.8a64 64 0 0 0 90.496-90.496L557.248 232.704a64 64 0 0 0-90.496 0L104.704 594.752a64 64 0 0 0 0 90.496z"/></svg>
+      </a>
+    <!-- Learning section -->
+    <div *ngIf="learning">
+      <div class="border-b border-gray-200 ml-8 pb-5 pt-5 w-[80%] mb-6">
+        <h2 class="font-semibold text-xl leading-6 text-gray-900 ml-8 mb-4">Aprende a moverte por la web</h2>
+        <p class="mt-2 max-w-4xl text-sm text-[#6b7280]">Con este video sabrás como moverte por nuestra página con mucha más facilidad, esperemos que te sea útil.</p>
+
+      </div>
+      
+      <video class="w-[40%] mx-auto" controls autoplay>
+        <source src="../img/Tutorial.mkv" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>          
+  
+    </div>
+    
+    <!-- Feature section -->
+    <div class="lg:mx-auto mt-32  max-w-7xl px-6 sm:mt-56 lg:px-10 pb-20 sm:mr-8">
+      <div class=" max-w-2xl lg:text-justify">
+        <div class="mx-4 max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none sm:mr-8 lg:items-center">
+          <div class="w-[90%] max-w-xl lg:shrink-0 xl:max-w-2xl">
+            <h1 class="text-lg font-bold tracking-tight text-gray-900 sm:text-4xl">Cambiando la forma de conectar entre las personas.</h1> 
+            <p class="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">En nuestra plataforma, derribamos barreras generacionales y creamos conexiones significativas. Jóvenes y personas mayores se encuentran para intercambiar experiencias enriquecedoras. Descubre la sabiduría de aquellos que han recorrido caminos similares, rompe las barreras del tiempo y crea amistades intergeneracionales. </p>
+            <div class="mt-10 flex items-center gap-x-6">
+              <!--<a href="#" class="rounded-md bg-indigo-600  px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get started</a>
+              <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Live demo <span aria-hidden="true">→</span></a>-->
+            </div>
+          </div>
+          <div class="mt-14 flex justify-center gap-4 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
+            <div class="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
+              <div class="relative">
+                <img src="assets/img/landing_img-7.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg ">
+                <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+              </div>
+            </div>
+            <div class="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
+              <div class="relative">
+                <img src="assets/img/landing_img-3.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+              </div>
+              <div class="relative">
+                <img src="assets/img/landing_img-4.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+              </div>
+            </div>
+            <div class="w-44 flex-none space-y-8 pt-32 sm:pt-0">
+              <div class="relative">
+                <img src="assets/img/landing_img-5.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+              </div>
+              <div class="relative">
+                <img src="assets/img/landing_img-6.jpg" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+        <!--pruebas
+      <div class="overflow-hidden">
+        <div class="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
+          <div class="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
+            <div class="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
+              <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">We’re changing the way people connect.</h1>
+              <p class="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">Cupidatat minim id magna ipsum sint dolor qui. Sunt sit in quis cupidatat mollit aute velit. Et labore commodo nulla aliqua proident mollit ullamco exercitation tempor. Sint aliqua anim nulla sunt mollit id pariatur in voluptate cillum.</p>
+              <div class="mt-10 flex items-center gap-x-6">
+                <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get started</a>
+                <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Live demo <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+            <div class="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
+              <div class="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
+                <div class="relative">
+                  <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                  <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                </div>
+              </div>
+              <div class="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
+                <div class="relative">
+                  <img src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                  <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                </div>
+                <div class="relative">
+                  <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                  <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                </div>
+              </div>
+              <div class="w-44 flex-none space-y-8 pt-32 sm:pt-0">
+                <div class="relative">
+                  <img src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                  <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                </div>
+                <div class="relative">
+                  <img src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                  <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+pruebas-->
+
+      
+     
+  </div>
+  <div class="relative ">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-[90%] flex mx-auto border-t border-gray-300"></div>
+    </div>
+    <div class="relative flex justify-center">
+      <span class="bg-white px-2 text-sm text-gray-300 ">·</span>
+    </div>
+  </div>
+</main>
+
+
+    
+
+
+    <div class="overflow-hidden bg-white py-32">
+      <div class="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
+        <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:min-w-full lg:max-w-none lg:flex-none lg:gap-y-8">
+          <div class="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Una nueva iniciativa</h2>
+            <p class="mt-6 text-xl leading-8 text-gray-600">                    Si eres una persona mayor que busca compañía o estás dispuesto a ofrecer tu tiempo para charlar, únete a nuestra comunidad y comienza a disfrutar de la conversación con personas amables y comprensivas..
+              </p>
+            <p class="mt-6 text-base leading-7 text-gray-600">En nuestra plataforma, ofrecemos un espacio seguro y confiable para que las personas mayores puedan conectarse con otros usuarios dispuestos a tener una conversación.
+              Creemos que la conversación es una herramienta valiosa para combatir la soledad y el aislamiento social, por lo que nuestra iniciativa tiene como objetivo mejorar el bienestar emocional de nuestros usuarios.</p>
+            <div class="mt-10 flex">
+              <a (click)="iniciarSesion()" class="cursor-pointer rounded-md bg-[#004aad] px-3.5 py-2.5 text-sm font-semibold text-[#fff] shadow-sm hover:bg-[#2A61AB] transition duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Únete a nosotros <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents sm:flex-col">
+            <div class="w-0 flex-auto lg:ml-auto lg:w-auto lg:flex-none lg:self-end">
+              <img src="assets/img/landing_img-2B.jpg" alt="" class="aspect-[7/5] w-[37rem] max-w-none rounded-2xl bg-gray-50 object-cover">
+            </div>
+            <div class="contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:w-[37rem] lg:items-start lg:justify-end lg:gap-x-8">
+             
+              <div class="flex w-96 flex-auto justify-end lg:w-auto lg:flex-none">
+                <img src="assets/img/landing_img-9.jpg" alt="" class="aspect-[7/5] w-[37rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover">
+              </div>
+              <div class="hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none">
+                <img src="assets/img/landing_img-8.jpg" alt="" class="aspect-[4/3] w-[24rem] max-w-none rounded-2xl bg-gray-50 object-cover">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Testimonial section -->
+    
+
+    <!-- Pricing section -->
+    
+
+    <!-- FAQs -->
+    
+
+    <!-- CTA section -->
+
+    <!--Seccion prueba-->
+
+      
+        
+    
+    
+
+  
+
+  <!-- Footer -->
+  <footer class="landing-footer bg-[#111827] text-[#fff]  font-display" aria-labelledby="footer-heading">
+      <div class=" mx-5 container-footer grid gap-2 grid-cols-2 grid-rows-1 pt-4  text-md">
+        <div class=" container-footer grid gap-1 grid-cols-1 grid-rows-3 pt-5" >
+          <div class="px-2 py-2">Correo electrónico: <span class="text-[#06b6d4] hover:underline decoration-solid transition duration-150 hover:ease-in">martin.gonzalez@alumno.ucjc.edu</span></div>
+          <div class="px-2 py-2">Dirección: C:/ Almagro, 5, Madrid.</div>
+          <div class="px-2 py-3"> <img src="../assets/img/logoCEP.png" class="w-32 h-8"></div>
+
+
+
+
+        </div>
+        
+        
+          <div class=" py-8 grid gap-1 grid-rows-3">
+              <div class=" px-2 pl-40">
+                  Conecta con nosotros:
+              </div>
+              
+              <div class="px-2 py-2 flex space-x-6 md:order-2 pl-80 flex-wrap self-center text-center justify-center">
+                <a href="#" class="text-[#6b7280] hover:text-[#9ca3af]">
+                  <span class="sr-only">Email</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                    <path fill="currentColor" d="M32 6v20c0 1.135-.865 2-2 2h-2V9.849l-12 8.62l-12-8.62V28H2c-1.135 0-2-.865-2-2V6c0-.568.214-1.068.573-1.422A1.973 1.973 0 0 1 2 4h.667L16 13.667L29.333 4H30c.568 0 1.068.214 1.427.578c.359.354.573.854.573 1.422z"/>
+                  </svg>
+                </a> 
+        
+                <a href="#" class="text-[#6b7280] hover:text-[#9ca3af]">
+                  <span class="sr-only">GitHub</span>
+                  <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+        
+                <a href="https://gitlab.com/martin_okb/pfc_front.git" class="text-[#6b7280] hover:text-[#9ca3af]">
+                  <span class="sr-only">GitLab</span>
+                  <svg xmlns="http://www.w3.org/2000/svg"  width="32" height="32" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="m14.329 6.922l-.02-.053l-1.239-3.232l-.668 2.044l-.337 1.035H3.936L3.598 5.68l-.667-2.043l-1.24 3.237l-.005.01l-.004.01l-.018.045a2.543 2.543 0 0 0 .848 2.93l.005.004l.01.008l.01.008l.009.006l3.302 2.474l.004.004l1.644 1.242l.5.379l.501-.379l1.644-1.242l.006-.004l3.325-2.489l.007-.005l.009-.007a2.543 2.543 0 0 0 .844-2.939l-.003-.008Zm.053 4.152l-3.337 2.497l-1.643 1.242l-.999.755a.675.675 0 0 1-.813 0l-.999-.755l-1.643-1.242l-3.313-2.483l-.018-.014l-.008-.006A4.043 4.043 0 0 1 .267 6.395l.023-.057l1.9-4.963l.013-.033l.081-.212l.023-.06l.158-.413A.565.565 0 0 1 2.941.3a.576.576 0 0 1 .613.415l.134.41l.005.017l.078.239l.011.033l1.242 3.802h5.953l1.241-3.802l.011-.033l.078-.24l.006-.016l.133-.41a.575.575 0 0 1 1.088-.058l.157.409l.025.064l.08.211l.013.033l1.903 4.963l.022.058a4.043 4.043 0 0 1-1.343 4.671l-.01.008Z" clip-rule="evenodd"/>
+                  </svg>
+                </a><br><br>
+
+              </div>
+              <div class="px-2 py-4 flex space-x-6 md:order-2 pl-80 flex-wrap self-left text-left justify-center text-sm">&copy; &nbsp; Martín González Rodríguez.</div>
+
+          </div>
+      </div>
+  </footer>
+<app-banner-cookies (cerrar)="cerrarCookies($event)" (aceptar)="aceptarCookies($event)" *ngIf="!cookiesBannerCerrado"></app-banner-cookies>
+  </div>

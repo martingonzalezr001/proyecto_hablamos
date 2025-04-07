@@ -1,0 +1,159 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>-->
+    <link rel="stylesheet" href="login.component.css" >
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+<!--
+</head> -->
+<!-- <body> -->
+    <!--
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+<!--
+  This example requires updating your template:
+
+  ```
+  <html class="h-full bg-gray-50">
+  <body class="h-full">
+  ```
+-->
+<header class="absolute inset-x-0 top-0 z-50">
+  <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <div class="flex lg:flex-1">
+      <button type="button" class="relative inline-flex items-center  bg-gray-100  transition duration-150 rounded-md px-2 py-2 text-[#004aad] ring-inset ring-white  focus:z-10" onclick="history.go(-1)">
+        <span class="sr-only">Previous</span>
+        <svg class="h-10 w-10  border-[#004aad] border-hidden border-2 rounded-md hover:border-solid hover:text-[#3558E6] transition duration-500 " viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
+      <!-- <div class="flex lg:hidden">
+        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+          <span class="sr-only">Open main menu</span>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div> -->
+      
+      
+    </nav>
+
+</header>
+<div class="  flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8 container-div">
+    <div class="w-full max-w-md space-y-8">
+      <div>
+        <h2 class="text-center mt-6 text-4xl text-black font-semibold" *ngIf="!form_sign_in">{{ nuevo_usuario }}</h2>
+        <h2 class="text-center mt-6 text-4xl text-black font-semibold" *ngIf="form_sign_in">{{ iniciar_sesion }}</h2>
+
+        <h3 class="text-center mt-6 text-lg text-black " *ngIf="!form_sign_in"> {{ nuevo_descripcion }}</h3>
+        
+        <!--<p class="mt-2 text-center text-sm text-gray-600">
+          No tienes una cuenta?<br>
+          <a href="./registro.html" class="font-medium text-[#004aad] hover:text-indigo-500">Registrate!</a>
+        </p>-->
+      </div>
+      <form class="mt-8 space-y-6"  [formGroup]="loginUser" (ngSubmit)="login(loginUser)" >
+        <input type="hidden" name="remember" value="true">
+        <div class="-space-y-px rounded-md shadow-sm">
+          <div class="relative mt-2 rounded-md shadow-md">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg class="h-5 w-5 text-[#004aad]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+                <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+            </svg>
+            </div>
+            <input type="email" formControlName="email" [(ngModel)]="email" name="email" id="email" class="block w-full rounded-md border-0 py-1.5 pl-10  text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{correo_electronico}}" required>
+          </div>  
+          <div>
+            <label for="password" class="sr-only">Password</label>
+            <div class="relative mt-2 rounded-md shadow-md flex row">
+                        
+              <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <svg class="h-5 w-5 text-[#004aad] group-hover:text-indigo-400 mr-16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
+                  </svg>
+                  
+              </div>
+              
+              <input type="password" formControlName="password" [(ngModel)]="password"  name="password" id="password" class="block w-full rounded-md  py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="{{ contrasenia }}" required>
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="mirar();" class="flex self-center p-2 cursor-pointer" width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5s5 2.24 5 5s-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3s3-1.34 3-3s-1.34-3-3-3z"/></svg>
+            </div>
+          </div>
+        </div>
+  
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+            <label for="remember-me" class="ml-2 block text-sm text-gray-900">{{recordar_contrasenia}}</label>
+          </div>
+  
+          <div class="text-sm">
+            <a routerLink="../recuperar-password" class="font-medium text-[#004aad] hover:text-indigo-500 hover:underline decoration-2">{{ olvidaste_contrasenia }}</a>
+          </div>
+        </div>
+  
+        <div>
+          <button type="submit" href="" class=" group relative flex w-full text-[#fff] justify-center rounded-md  bg-[#004aad] transition duration-150 px-3 py-2 text-xl font-semibold  hover:bg-[#2A61AB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            
+            {{ comenzar }}
+          </button>
+        </div>
+      </form>
+    </div>
+    
+  </div>
+  <p class="text-sm text-center mt-4" *ngIf="!form_sign_in">¿Ya tienes una cuenta?<br>
+    <a class="text-center text-[#004aad] hover:text-indigo-500 cursor-pointer hover:underline decoration-2 font-medium" (click)="mostrarOcultarSignIn()">Inicia sesión!</a>
+  </p>
+  <p class="mt-2 text-center text-sm text-gray-600" *ngIf="form_sign_in">
+          No tienes una cuenta?<br>
+          <a class="font-medium text-[#004aad] hover:text-indigo-500 cursor-pointer hover:underline decoration-2 " (click)="mostrarOcultarSignIn()">Registrate!</a>
+  </p>
+
+  <div aria-live="assertive" class=" pointer-events-none  inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6">
+    <div class="flex w-full  flex-col items-center space-y-4 relative sm:items-end">
+      <!--
+        Notification panel, dynamically insert this into the live region when it needs to be displayed
+  
+        Entering: "transform ease-out duration-300 transition"
+          From: "translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+          To: "translate-y-0 opacity-100 sm:translate-x-0"
+        Leaving: "transition ease-in duration-100"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+      <app-notification-error *ngIf="!logeado && intento_log" class="text-clifford self-center  p-3" [error]="strError" [logeado]="logeado">
+      </app-notification-error>
+    </div>
+  </div>
+  
+  
+<!-- </body>
+ --><!-- </html> -->
